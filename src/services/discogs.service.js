@@ -8,17 +8,17 @@ const discogsApiInstance = axios.create({
   },
 });
 
-const searchAll = ({ query }) => discogsApiInstance.get(`database/search?q=${query}`);
+const search = ({ query, type = null }) => discogsApiInstance.get(`database/search?q=${query}&type=${type}`);
 
-const searchBy = ({ query, type }) => discogsApiInstance.get(`database/search?q=${query}&type=${type}`);
+// const searchBy = ({ query, type }) =>
+// discogsApiInstance.get(`database/search?q=${query}&type=${type}`);
 
 // search by artist https://api.discogs.com/database/search?q=room+full+of+walters&type=artist
 // search by release https://api.discogs.com/database/search?q=master+of+puppets&type=release
 // by album https://api.discogs.com/database/search?q=master+of+puppets&type=release&format=album
 
 const discogsApiService = {
-  searchAll,
-  searchBy,
+  search,
 };
 
 export default discogsApiService;

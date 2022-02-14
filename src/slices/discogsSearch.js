@@ -55,7 +55,7 @@ const discogsSearchSlice = createSlice({
     },
     [getSearchResults.fulfilled]: (state, action) => {
       state.status = 'fulfilled';
-      state.entities = action.payload;
+      state.entities = action.payload.filter((el) => el.type !== 'label');
     },
     [getSearchResults.rejected]: (state) => {
       state.status = 'rejected';

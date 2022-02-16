@@ -17,11 +17,7 @@ const api = axios.create({
   },
 });
 
-const search = ({ query, type = null }) => {
-  console.log('query api', query);
-
-  return api.get(`database/search?q=${query}&type=${type}`);
-};
+const search = ({ query, type = null }) => api.get(`database/search?q=${query}&type=${type}`);
 
 const getArtistInfo = ({ id }) => api.get(`artists/${id}`);
 

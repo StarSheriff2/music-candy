@@ -6,7 +6,6 @@ import discogsSearchReducer from './slices/discogsSearch';
 const rootReducer = combineReducers({
   discogsSearch: discogsSearchReducer,
   message: messageReducer,
-  reminders: remindersReducer,
 });
 
 const store = configureStore({

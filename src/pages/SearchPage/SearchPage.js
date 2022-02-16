@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import styles from './SearchPage.module.scss';
+import SearchBar from '../../components/SearchBar/SearchBar';
 
-import { clearMessage } from '../slices/message';
+import { clearMessage } from '../../slices/message';
 
 const SearchPage = () => {
   const { message } = useSelector((state) => state.message);
@@ -16,7 +18,7 @@ const SearchPage = () => {
     <div>
       <h1>Music Candy</h1>
       <div>
-        <input type="search" placeholder="search any release" />
+        <SearchBar />
       </div>
       <div>
         Search Results component

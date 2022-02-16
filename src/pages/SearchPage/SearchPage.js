@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './SearchPage.module.scss';
 import SearchBar from '../../components/SearchBar/SearchBar';
+import { discogsSearchState } from '../../slices/discogsSearch';
 
 import { clearMessage } from '../../slices/message';
 
 const SearchPage = () => {
   const { message } = useSelector((state) => state.message);
+  const { results } = useSelector(discogsSearchState);
+  console.log(results);
 
   const dispatch = useDispatch();
 
@@ -21,7 +24,9 @@ const SearchPage = () => {
         <SearchBar />
       </div>
       <div>
-        Search Results component
+        <h2>{results.title}</h2>
+        <img src={results.thumb} alt="search result thumbnail" />
+
       </div>
       <div>
         MY Collection

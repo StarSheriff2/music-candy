@@ -1,0 +1,23 @@
+@import '../../styles/abstracts/variables';
+
+.searchBar {
+  display: flex;
+  border-radius: 25px;
+}
+
+.searchInput {
+  width: 100%;
+  height: 4rem;
+  border: none;
+  padding-left: 1rem;
+}
+
+.searchBtn {
+  border: none;
+  box-shadow: none;
+  background-color: $white;
+}
+
+.searchIcon {
+  margin: 0 2rem;
+}

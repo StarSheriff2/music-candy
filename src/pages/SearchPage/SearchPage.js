@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './SearchPage.module.scss';
 import SearchBar from '../../components/SearchBar/SearchBar';
@@ -17,11 +17,11 @@ const SearchPage = () => {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className={styles.searchPage}>
       <h1>Music Candy</h1>
-      <div>
-        <SearchBar />
-      </div>
+
+      <SearchBar />
+
       <div>
         {status === 'fulfilled' && (
           results.map((r) => (

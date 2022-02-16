@@ -11,7 +11,7 @@ const SearchBar = () => {
 
   const dispatch = useDispatch();
 
-  const handleClick = () => dispatch(search(query));
+  const handleClick = () => dispatch(search({ query }));
 
   return (
     <div className={styles.searchBar}>

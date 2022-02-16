@@ -8,8 +8,7 @@ import { clearMessage } from '../../slices/message';
 
 const SearchPage = () => {
   const { message } = useSelector((state) => state.message);
-  const { results } = useSelector(discogsSearchState);
-  console.log(results);
+  const { results, status } = useSelector(discogsSearchState);
 
   const dispatch = useDispatch();
 
@@ -24,9 +23,14 @@ const SearchPage = () => {
         <SearchBar />
       </div>
       <div>
-        <h2>{results.title}</h2>
-        <img src={results.thumb} alt="search result thumbnail" />
-
+        {status === 'fulfilled' && (
+          results.map((r) => (
+            <div key={r.id}>
+              <h2>{r.title}</h2>
+              <img src={r.thumb} alt="search result thumbnail" />
+            </div>
+          ))
+        )}
       </div>
       <div>
         MY Collection

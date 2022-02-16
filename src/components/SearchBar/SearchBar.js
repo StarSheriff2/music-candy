@@ -1,17 +1,11 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { search } from '../../slices/discogsSearch';
+import useFetchResults from '../../hooks/fetchResults';
 import styles from './SearchBar.module.scss';
 
 const SearchBar = () => {
-  const [query, setQuery] = useState('');
-
-  const dispatch = useDispatch();
-
-  const handleClick = () => dispatch(search({ query }));
+  const { query, setQuery } = useFetchResults();
 
   return (
     <div className={styles.searchBar}>
@@ -19,15 +13,10 @@ const SearchBar = () => {
         className={styles.searchInput}
         type="search"
         placeholder="search any release"
+        value={query}
         onChange={(event) => setQuery(event.target.value)}
       />
-      <button
-        type="button"
-        className={styles.searchBtn}
-        onClick={handleClick}
-      >
-        <FontAwesomeIcon icon={faMagnifyingGlass} className={styles.searchIcon} />
-      </button>
+      <FontAwesomeIcon icon={faMagnifyingGlass} className={styles.searchIcon} />
     </div>
   );
 };

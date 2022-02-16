@@ -9,6 +9,7 @@ const SearchBar = () => {
 
   return (
     <div className={styles.searchBar}>
+      <FontAwesomeIcon icon={faMagnifyingGlass} className={styles.searchIcon} />
       <input
         className={styles.searchInput}
         type="search"
@@ -16,7 +17,6 @@ const SearchBar = () => {
         value={query}
         onChange={(event) => setQuery(event.target.value)}
       />
-      <FontAwesomeIcon icon={faMagnifyingGlass} className={styles.searchIcon} />
     </div>
   );
 };

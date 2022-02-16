@@ -2,22 +2,23 @@
 
 .searchBar {
   display: flex;
-  border-radius: 25px;
+  border-radius: 20px;
+  background-color: $white;
+  align-items: center;
+  position: relative;
 }
 
 .searchInput {
   width: 100%;
   height: 4rem;
   border: none;
-  padding-left: 1rem;
-}
-
-.searchBtn {
-  border: none;
-  box-shadow: none;
-  background-color: $white;
+  padding-left: 5rem;
+  border-radius: 20px;
 }
 
 .searchIcon {
-  margin: 0 2rem;
+  background-color: transparent;
+  color: black;
+  position: absolute;
+  left: 2rem;
 }

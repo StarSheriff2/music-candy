@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import useFetchResults from '../../hooks/fetchResults';
@@ -14,8 +14,8 @@ const SearchBar = () => {
         className={styles.searchInput}
         type="search"
         placeholder="search any release"
-        value={query}
-        onChange={(event) => setQuery(event.target.value)}
+        value={query.slug}
+        onChange={(event) => setQuery({ ...query, slug: event.target.value})}
       />
     </div>
   );

@@ -6,19 +6,22 @@ import { search } from '../slices/discogsSearch';
 const useFetchResults = () => {
   const dispatch = useDispatch();
 
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState({
+    slug: '',
+    type: null,
+  });
 
   useEffect(() => {
     let timeoutId;
 
-    if (query !== '') {
+    if (query.slug !== '') {
       timeoutId = setTimeout(() => {
-        dispatch(search({ query }));
+        dispatch(search(query));
       }, 1000);
     }
 
     return () => clearTimeout(timeoutId);
-  }, [query]);
+  }, [query.slug]);
 
   return { query, setQuery };
 };

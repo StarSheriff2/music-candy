@@ -1,9 +1,9 @@
-import './App.css';
+import SearchPage from './pages/SearchPage/SearchPage';
 
 function App() {
   return (
-    <div>
-      <h2>Hello from React</h2>
+    <div className="border border-danger">
+      <SearchPage />
 
     </div>
   );

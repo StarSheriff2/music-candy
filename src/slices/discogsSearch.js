@@ -4,12 +4,12 @@ import { setMessage } from './message';
 
 import discogsApiService from '../services/discogs.service';
 
-export const getSearchResults = createAsyncThunk(
-  'discogsSearch/getSearchResults',
+export const search = createAsyncThunk(
+  'discogsSearch/search',
   async (query, thunkAPI) => {
     try {
       const response = await discogsApiService.search(query);
-      return response.data[1];
+      return response.data.results;
     } catch (error) {
       const message = (error.response
           && error.response.data
@@ -50,20 +50,20 @@ const discogsSearchSlice = createSlice({
   name: 'discogsSearch',
   initialState,
   extraReducers: {
-    [getSearchResults.pending]: (state) => {
+    [search.pending]: (state) => {
       state.status = 'pending';
     },
-    [getSearchResults.fulfilled]: (state, action) => {
+    [search.fulfilled]: (state, action) => {
       state.status = 'fulfilled';
-      state.entities = action.payload.filter((el) => el.type !== 'label');
+      state.results = action.payload.filter((el) => el.type !== 'label');
     },
-    [getSearchResults.rejected]: (state) => {
+    [search.rejected]: (state) => {
       state.status = 'rejected';
-      state.entities = [];
+      state.results = [];
     },
   },
 });
 
-export const discogsSearchState = (state) => state.results;
+export const discogsSearchState = (state) => state.discogsSearch;
 const { reducer } = discogsSearchSlice;
 export default reducer;

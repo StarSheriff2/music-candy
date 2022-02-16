@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import useFetchResults from '../../hooks/fetchResults';
@@ -6,6 +6,11 @@ import styles from './SearchBar.module.scss';
 
 const SearchBar = () => {
   const { query, setQuery } = useFetchResults();
+
+  const handleSelect = (event) => {
+    console.log('type seclect:', event.target.value);
+    setQuery({ ...query, type: event.target.value });
+  };
 
   return (
     <div className={styles.searchBar}>
@@ -15,8 +20,25 @@ const SearchBar = () => {
         type="search"
         placeholder="search any release"
         value={query.slug}
-        onChange={(event) => setQuery({ ...query, slug: event.target.value})}
+        onChange={(event) => setQuery({ ...query, slug: event.target.value })}
       />
+      <select id="types" name="types" onChange={handleSelect} className={styles.searchType}>
+        <option
+          defaultValue={query.type}
+        >
+          All
+        </option>
+        <option
+          value="artist"
+        >
+          artist
+        </option>
+        <option
+          value="master"
+        >
+          release
+        </option>
+      </select>
     </div>
   );
 };

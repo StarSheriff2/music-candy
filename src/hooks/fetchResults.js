@@ -21,7 +21,7 @@ const useFetchResults = () => {
     }
 
     return () => clearTimeout(timeoutId);
-  }, [query.slug]);
+  }, [query.slug, query.type]);
 
   return { query, setQuery };
 };

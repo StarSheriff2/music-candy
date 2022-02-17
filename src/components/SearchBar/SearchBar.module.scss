@@ -6,11 +6,12 @@
   background-color: $white;
   align-items: center;
   position: relative;
+  height: 4rem;
 }
 
 .searchInput {
   width: 100%;
-  height: 4rem;
+  height: 100%;
   border: none;
   padding-left: 5rem;
   border-radius: 20px;
@@ -26,5 +27,11 @@
 .searchType {
   position: absolute;
   right: 2rem;
-  // color: black;
+  height: 100%;
+  font-size: 1.4rem;
+  letter-spacing: 0.05rem;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='lightgray' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position-x: 100%;
+  background-position-y: 50%;
 }

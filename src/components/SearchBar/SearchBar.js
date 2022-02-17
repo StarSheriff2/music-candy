@@ -23,21 +23,9 @@ const SearchBar = () => {
         onChange={(event) => setQuery({ ...query, slug: event.target.value })}
       />
       <select id="types" name="types" onChange={handleSelect} className={styles.searchType}>
-        <option
-          defaultValue={query.type}
-        >
-          All
-        </option>
-        <option
-          value="artist"
-        >
-          artist
-        </option>
-        <option
-          value="master"
-        >
-          release
-        </option>
+        <option defaultValue={query.type}>All</option>
+        <option value="artist">artist</option>
+        <option value="master">release</option>
       </select>
     </div>
   );

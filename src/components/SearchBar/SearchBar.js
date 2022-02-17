@@ -24,8 +24,8 @@ const SearchBar = () => {
       />
       <select id="types" name="types" onChange={handleSelect} className={styles.searchType}>
         <option defaultValue={query.type}>All</option>
-        <option value="artist">artist</option>
-        <option value="master">release</option>
+        <option value="artist">Artist</option>
+        <option value="master">Release</option>
       </select>
     </div>
   );

@@ -8,7 +8,6 @@ export const search = createAsyncThunk(
   'discogsSearch/search',
   async (query, thunkAPI) => {
     try {
-      console.log('query in thunk: ', query)
       const response = await discogsApiService.search(query);
       return response.data.results;
     } catch (error) {

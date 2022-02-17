@@ -8,7 +8,6 @@ const SearchBar = () => {
   const { query, setQuery } = useFetchResults();
 
   const handleSelect = (event) => {
-    console.log('type seclect:', event.target.value);
     setQuery({ ...query, type: event.target.value });
   };
 

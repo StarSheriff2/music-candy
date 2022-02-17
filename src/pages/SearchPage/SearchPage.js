@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from './SearchPage.module.scss';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import { discogsSearchState } from '../../slices/discogsSearch';
-import albumNoArt from '../../common/no-album-art.jpeg';
+import SearchResults from '../../components/SearchResults/SearchResults';
 
 import { clearMessage } from '../../slices/message';
 
@@ -23,19 +23,13 @@ const SearchPage = () => {
 
       <SearchBar />
 
-      <div>
-        {status === 'fulfilled' && (
-          results.map((r) => (
-            <div key={r.id}>
-              <h2>{r.title}</h2>
-              <img
-                src={(r.thumb === '') ? albumNoArt : r.thumb}
-                alt="search result thumbnail"
-                className={styles.thumb}
-              />
-            </div>
-          ))
-        )}
+      <div className={styles.resultsSection}>
+        {status === 'fulfilled'
+          && (
+          <ul>
+            <SearchResults results={results} />
+          </ul>
+          )}
       </div>
       <div>
         MY Collection

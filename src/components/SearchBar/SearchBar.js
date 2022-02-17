@@ -1,33 +1,31 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { search } from '../../slices/discogsSearch';
+import useFetchResults from '../../hooks/fetchResults';
 import styles from './SearchBar.module.scss';
 
 const SearchBar = () => {
-  const [query, setQuery] = useState('');
+  const { query, setQuery } = useFetchResults();
 
-  const dispatch = useDispatch();
-
-  const handleClick = () => dispatch(search({ query }));
+  const handleSelect = (event) => {
+    setQuery({ ...query, type: event.target.value });
+  };
 
   return (
     <div className={styles.searchBar}>
+      <FontAwesomeIcon icon={faMagnifyingGlass} className={styles.searchIcon} />
       <input
         className={styles.searchInput}
         type="search"
         placeholder="search any release"
-        onChange={(event) => setQuery(event.target.value)}
+        value={query.slug}
+        onChange={(event) => setQuery({ ...query, slug: event.target.value })}
       />
-      <button
-        type="button"
-        className={styles.searchBtn}
-        onClick={handleClick}
-      >
-        <FontAwesomeIcon icon={faMagnifyingGlass} className={styles.searchIcon} />
-      </button>
+      <select id="types" name="types" onChange={handleSelect} className={styles.searchType}>
+        <option defaultValue={query.type}>All</option>
+        <option value="artist">Artist</option>
+        <option value="master">Release</option>
+      </select>
     </div>
   );
 };

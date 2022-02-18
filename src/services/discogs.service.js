@@ -13,8 +13,6 @@ const search = ({
   slug, type, page, perPage,
 }) => api.get(`database/search?q=${slug}&type=${type}&page=${page}&per_page=${perPage}`);
 
-// const search = ({ slug, type, page }) => api.get(`database/search?q=${slug}&type=${type}&page=${page}`);
-
 const getArtistInfo = ({ id }) => api.get(`artists/${id}`);
 
 const getArtistReleases = ({ id }) => api.get(`artists/${id}/releases?sort=year&sort_order=desc`)

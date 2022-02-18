@@ -21,7 +21,10 @@ const SearchBar = () => {
           type="search"
           placeholder="search any release"
           value={data.query.slug}
-          onChange={(event) => setData({ ...data, query: { ...data.query, slug: event.target.value } })}
+          onChange={(event) => setData({
+            ...data,
+            query: { ...data.query, slug: event.target.value },
+          })}
         />
         <select id="types" name="types" onChange={handleSelect} className={styles.searchType}>
           <option defaultValue={data.query.type}>All</option>

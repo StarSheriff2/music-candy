@@ -30,44 +30,12 @@ const SearchResults = ({ results, pagination }) => {
 
     return (
       <>
-        {results.map((r) => {
-          <SearchResultItem result={r} />;
-        // let resultType;
-        // if (r.type === 'artist') {
-        //   resultType = 'Artist';
-        // } else if (r.type === 'master') {
-        //   resultType = 'Master Release';
-        // } else {
-        //   resultType = 'Release';
-        // }
-        // return (
-        //   <li key={r.id} className={styles.resultItem}>
-        //     <img
-        //       src={(r.thumb === '') ? albumNoArt : r.thumb}
-        //       alt="search result thumbnail"
-        //       className={styles.thumb}
-        //     />
-        //     <div className={styles.resultData}>
-        //       <h3 className={styles.resultTitle}>
-        //         {r.title}
-        //         {' '}
-        //         <span>{r.year && `(${r.year})`}</span>
-        //         {' '}
-        //         <span>{r.country && `· ${r.country}`}</span>
-        //       </h3>
-        //       <p className={styles.resultType}>{resultType}</p>
-        //     </div>
-        //     <div className="d-flex">
-        //       <p className="chevron">›</p>
-        //     </div>
-        //   </li>
-        // );
-        })}
+        {results.map((r) => <SearchResultItem key={r.id} result={r} />)}
         <hr />
         <span>{`${(page !== pages) ? (page - 1) * 50 + 1 : (items - ((page - 1) * 50)) + 1} – ${(items >= 50) ? 50 : items} of ${items}`}</span>
         <span>
           ‹ Prev
-          <a href="#" onClick={handleNextClick}>Next ›</a>
+          {/* <a href="#" onClick={handleNextClick}>Next ›</a> */}
         </span>
       </>
     );

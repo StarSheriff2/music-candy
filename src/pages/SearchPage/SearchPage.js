@@ -9,7 +9,7 @@ import { clearMessage } from '../../slices/message';
 
 const SearchPage = () => {
   const { message } = useSelector((state) => state.message);
-  const { results, status } = useSelector(discogsSearchState);
+  const { results, status, pagination } = useSelector(discogsSearchState);
 
   const dispatch = useDispatch();
 
@@ -27,7 +27,7 @@ const SearchPage = () => {
         {status === 'fulfilled'
           && (
           <ul>
-            <SearchResults results={results} />
+            <SearchResults results={results} pagination={pagination}/>
           </ul>
           )}
       </div>

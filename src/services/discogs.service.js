@@ -9,7 +9,9 @@ const api = axios.create({
   },
 });
 
-const search = ({ slug, type }) => api.get(`database/search?q=${slug}&type=${type}`);
+const search = ({ slug, type, page }) => api.get(`database/search?q=${slug}&type=${type}&page=${page}`);
+
+// const search = ({ slug, type, page }) => api.get(`database/search?q=${slug}&type=${type}&page=${page}`);
 
 const getArtistInfo = ({ id }) => api.get(`artists/${id}`);
 

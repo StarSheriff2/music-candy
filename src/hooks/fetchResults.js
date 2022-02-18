@@ -9,6 +9,7 @@ const useFetchResults = () => {
   const [query, setQuery] = useState({
     slug: '',
     type: null,
+    page: null,
   });
 
   useEffect(() => {

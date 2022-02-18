@@ -9,7 +9,7 @@ export const search = createAsyncThunk(
   async (query, thunkAPI) => {
     try {
       const response = await discogsApiService.search(query);
-      return response.data.results;
+      return response.data;
     } catch (error) {
       const message = (error.response
           && error.response.data
@@ -44,6 +44,7 @@ export const search = createAsyncThunk(
 const initialState = {
   status: 'idle',
   results: [],
+  pagination: {}
 };
 
 const discogsSearchSlice = createSlice({
@@ -54,12 +55,16 @@ const discogsSearchSlice = createSlice({
       state.status = 'pending';
     },
     [search.fulfilled]: (state, action) => {
+      const { results, pagination } = action.payload;
+
       state.status = 'fulfilled';
-      state.results = action.payload.filter((el) => el.type !== 'label');
+      state.results = results.filter((el) => el.type !== 'label');
+      state.pagination = pagination;
     },
     [search.rejected]: (state) => {
       state.status = 'rejected';
       state.results = [];
+      state.pagination = {};
     },
   },
 });

@@ -27,7 +27,7 @@ const SearchPage = () => {
         {status === 'fulfilled'
           && (
           <ul>
-            <SearchResults results={results} pagination={pagination}/>
+            <SearchResults results={results} pagination={pagination} />
           </ul>
           )}
       </div>

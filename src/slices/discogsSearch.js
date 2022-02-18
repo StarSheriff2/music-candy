@@ -44,7 +44,7 @@ export const search = createAsyncThunk(
 const initialState = {
   status: 'idle',
   results: [],
-  pagination: {}
+  pagination: {},
 };
 
 const discogsSearchSlice = createSlice({

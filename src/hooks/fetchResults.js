@@ -1,30 +1,51 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-
-import { search } from '../slices/discogsSearch';
+import discogsApiService from '../services/discogs.service';
+import { setMessage } from '../slices/message';
 
 const useFetchResults = () => {
   const dispatch = useDispatch();
 
-  const [query, setQuery] = useState({
-    slug: '',
-    type: null,
-    page: null,
+  const [data, setData] = useState({
+    query: {
+      slug: '',
+      type: null,
+      page: null,
+      perPage: 15,
+    },
+
+    results: [],
   });
 
   useEffect(() => {
     let timeoutId;
 
-    if (query.slug !== '') {
+    if (data.query.slug !== '') {
+      console.log('query: ', data.query.slug);
+      console.log('results: ', data.results);
       timeoutId = setTimeout(() => {
-        dispatch(search(query));
+        const fetch = async () => {
+          try {
+            const res = await discogsApiService.search(data.query);
+            console.log('hi');
+            setData({ ...data, results: res.data.results });
+          } catch (error) {
+            const message = (error.response
+              && error.response.data
+              && error.response.data.message)
+            || error.message
+            || error.toString();
+            dispatch(setMessage(message));
+          }
+        };
+        fetch();
       }, 1000);
     }
 
     return () => clearTimeout(timeoutId);
-  }, [query.slug, query.type]);
+  }, [data.query.slug, data.query.type]);
 
-  return { query, setQuery };
+  return { data, setData };
 };
 
 export default useFetchResults;

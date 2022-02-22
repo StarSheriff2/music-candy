@@ -17,10 +17,10 @@ const useFetchResults = () => {
     results: [],
   });
 
-  useEffect(() => {
-    let timeoutId;
+  let timeoutId;
 
-    if (data.query.slug !== '') {
+  useEffect(() => {
+    if (data.query.slug !== '' && status !== 'pending') {
       timeoutId = setTimeout(() => {
         const fetch = async () => {
           try {
@@ -43,11 +43,12 @@ const useFetchResults = () => {
 
     return () => {
       clearTimeout(timeoutId);
-      // setLoading(false);
     };
   }, [data.query.slug, data.query.type]);
 
-  return { data, setData };
+  const cancelScheduledFetch = () => clearTimeout(timeoutId);
+
+  return { data, setData, cancelScheduledFetch };
 };
 
 export default useFetchResults;

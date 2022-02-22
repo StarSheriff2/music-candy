@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
@@ -8,9 +8,7 @@ import styles from './SearchBar.module.scss';
 import SearchResultItem from '../../common/SearchResultItem/SearchResultItem';
 
 const SearchBar = () => {
-  const { data, setData } = useFetchResults();
-
-  const [showResults, setShowResults] = useState(true);
+  const { data, setData, cancelScheduledFetch } = useFetchResults();
 
   const dispatch = useDispatch();
 
@@ -20,11 +18,11 @@ const SearchBar = () => {
 
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
+      cancelScheduledFetch();
       const { slug, type } = data.query;
       dispatch(search({
         slug, type, perPage: 50, page: null,
       }));
-      setShowResults(false);
       setData({ results: [], query: { slug: '', ...data.query } });
     }
   };
@@ -39,7 +37,6 @@ const SearchBar = () => {
           placeholder="search any release"
           value={data.query.slug}
           onChange={(event) => {
-            setShowResults(true);
             setData({
               ...data,
               query: { ...data.query, slug: event.target.value },
@@ -53,7 +50,7 @@ const SearchBar = () => {
           <option value="master">Release</option>
         </select>
       </div>
-      {(data.results.length > 0 && showResults) && (
+      {(data.results.length > 0) && (
       <div className={styles.searchResultsWrapper}>
         <ul className={styles.searchResults}>
           {

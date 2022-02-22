@@ -33,7 +33,7 @@ const SearchResultItem = ({ result }) => {
         </p>
       </div>
       <div className="d-flex">
-        <FontAwesomeIcon icon={faAdd} />
+        <FontAwesomeIcon className={styles.addButton} icon={faAdd} />
       </div>
       <div className="d-flex">
         <FontAwesomeIcon icon={faChevronRight} />

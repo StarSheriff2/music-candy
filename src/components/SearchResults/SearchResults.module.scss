@@ -4,6 +4,10 @@
   border: none;
   background-color: transparent;
   color: $secondary-color;
+
+  &:hover {
+    color: $primary-color;
+  }
 }
 
 .pageBtn:nth-child(1) {

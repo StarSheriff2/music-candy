@@ -21,13 +21,10 @@ const useFetchResults = () => {
     let timeoutId;
 
     if (data.query.slug !== '') {
-      console.log('query: ', data.query.slug);
-      console.log('results: ', data.results);
       timeoutId = setTimeout(() => {
         const fetch = async () => {
           try {
             const res = await discogsApiService.search(data.query);
-            console.log('hi');
             setData({ ...data, results: res.data.results });
           } catch (error) {
             const message = (error.response
@@ -40,9 +37,14 @@ const useFetchResults = () => {
         };
         fetch();
       }, 1000);
+    } else {
+      setData({ ...data, results: [] });
     }
 
-    return () => clearTimeout(timeoutId);
+    return () => {
+      clearTimeout(timeoutId);
+      // setLoading(false);
+    };
   }, [data.query.slug, data.query.type]);
 
   return { data, setData };

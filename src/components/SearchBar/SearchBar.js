@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
@@ -10,6 +10,8 @@ import SearchResultItem from '../../common/SearchResultItem/SearchResultItem';
 const SearchBar = () => {
   const { data, setData } = useFetchResults();
 
+  const [showSearchBarResults, setShowSearchBarResults] = useState(true);
+
   const dispatch = useDispatch();
 
   const handleSelect = (event) => {
@@ -19,10 +21,13 @@ const SearchBar = () => {
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
       const { slug, type } = data.query;
-      dispatch(search({ slug, type, perPage: 50, page: null }));
-      setData({ results: [], query: { slug: '', ...data.query }});
+      dispatch(search({
+        slug, type, perPage: 50, page: null,
+      }));
+      setShowSearchBarResults(false);
+      setData({ results: [], query: { slug: '', ...data.query } });
     }
-  }
+  };
 
   return (
     <div className={styles.searchBarWrapper}>
@@ -33,10 +38,13 @@ const SearchBar = () => {
           type="search"
           placeholder="search any release"
           value={data.query.slug}
-          onChange={(event) => setData({
-            ...data,
-            query: { ...data.query, slug: event.target.value },
-          })}
+          onChange={(event) => {
+            setShowSearchBarResults(true);
+            setData({
+              ...data,
+              query: { ...data.query, slug: event.target.value },
+            });
+          }}
           onKeyPress={handleKeyPress}
         />
         <select id="types" name="types" onChange={handleSelect} className={styles.searchType}>
@@ -45,7 +53,7 @@ const SearchBar = () => {
           <option value="master">Release</option>
         </select>
       </div>
-      {(data.results.length > 0) && (
+      {(data.results.length > 0 && showSearchBarResults) && (
       <div className={styles.searchResultsWrapper}>
         <ul className={styles.searchResults}>
           {

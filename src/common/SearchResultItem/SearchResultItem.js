@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight, faAdd } from '@fortawesome/free-solid-svg-icons';
 import styles from './SearchResultItem.module.scss';
@@ -40,6 +41,16 @@ const SearchResultItem = ({ result }) => {
       </div>
     </li>
   );
+};
+
+SearchResultItem.propTypes = {
+  result: PropTypes.shape({
+    type: PropTypes.string.isRequired,
+    thumb: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    country: PropTypes.string,
+    year: PropTypes.string,
+  }).isRequired,
 };
 
 export default SearchResultItem;

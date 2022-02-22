@@ -20,7 +20,7 @@ const useFetchResults = () => {
   let timeoutId;
 
   useEffect(() => {
-    if (data.query.slug !== '' && status !== 'pending') {
+    if (data.query.slug !== '') {
       timeoutId = setTimeout(() => {
         const fetch = async () => {
           try {

@@ -76,8 +76,8 @@ SearchResults.propTypes = {
     Object,
   })).isRequired,
   pagination: PropTypes.shape(
-    null
+    null,
   ).isRequired,
-}
+};
 
 export default SearchResults;

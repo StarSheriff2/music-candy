@@ -1,21 +1,11 @@
-.resultItem {
-  display: grid;
-  height: 50px;
-  margin-bottom: 1rem;
-  grid-template-columns: auto 5fr 1fr;
+@import '../../styles/abstracts/variables';
+
+.pageBtn {
+  border: none;
+  background-color: transparent;
+  color: $secondary-color;
 }
 
-.thumb {
-  margin-right: 1rem;
-  height: 50px;
-  width: 50px;
-  object-fit: cover;
-}
-
-.resultTitle {
-  margin-bottom: 0.2rem;
-}
-
-.resultType {
-  font-size: 1.2rem;
+.pageBtn:nth-child(1) {
+  margin-left: 1rem;
 }

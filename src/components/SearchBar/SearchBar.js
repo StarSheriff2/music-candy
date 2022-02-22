@@ -10,7 +10,7 @@ import SearchResultItem from '../../common/SearchResultItem/SearchResultItem';
 const SearchBar = () => {
   const { data, setData } = useFetchResults();
 
-  const [showSearchBarResults, setShowSearchBarResults] = useState(true);
+  const [showResults, setShowResults] = useState(true);
 
   const dispatch = useDispatch();
 
@@ -24,7 +24,7 @@ const SearchBar = () => {
       dispatch(search({
         slug, type, perPage: 50, page: null,
       }));
-      setShowSearchBarResults(false);
+      setShowResults(false);
       setData({ results: [], query: { slug: '', ...data.query } });
     }
   };
@@ -39,7 +39,7 @@ const SearchBar = () => {
           placeholder="search any release"
           value={data.query.slug}
           onChange={(event) => {
-            setShowSearchBarResults(true);
+            setShowResults(true);
             setData({
               ...data,
               query: { ...data.query, slug: event.target.value },
@@ -53,7 +53,7 @@ const SearchBar = () => {
           <option value="master">Release</option>
         </select>
       </div>
-      {(data.results.length > 0 && showSearchBarResults) && (
+      {(data.results.length > 0 && showResults) && (
       <div className={styles.searchResultsWrapper}>
         <ul className={styles.searchResults}>
           {

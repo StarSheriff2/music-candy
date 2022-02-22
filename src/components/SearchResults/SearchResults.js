@@ -1,11 +1,11 @@
 /* eslint-disable camelcase */
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
-// import useFetchResults from '../../hooks/fetchResults';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { search } from '../../slices/discogsSearch';
 import SearchResultItem from '../../common/SearchResultItem/SearchResultItem';
-// import albumNoArt from '../../common/no-album-art.jpeg';
-// import styles from './SearchResults.module.scss';
+import styles from './SearchResults.module.scss';
 
 const SearchResults = ({ results, pagination }) => {
   const dispatch = useDispatch();
@@ -14,12 +14,14 @@ const SearchResults = ({ results, pagination }) => {
     page, pages, items, per_page, urls,
   } = pagination;
 
-  let paginationData;
+  let fromItem = 1; let
+    toItem = items;
 
-  if (pages === 1) {
-    paginationData = `1 - ${items}`;
-  } else {
-    paginationData = `${(page - 1) * per_page + 1} - ${(page !== pages) ? page * per_page : items}`;
+  if (pages !== 1) {
+    fromItem = (page - 1) * per_page + 1;
+    if (page !== pages) {
+      toItem = page * per_page;
+    }
   }
 
   const handleClick = (e) => {
@@ -33,23 +35,24 @@ const SearchResults = ({ results, pagination }) => {
     }));
   };
 
-  // const handlePrevClick = () => {
-  //   let params = new URLSearchParams(urls.prev);
-  //   params = Object.values(Object.fromEntries(params.entries()));
-  //   dispatch(search({
-  //     slug: params[0], type: params[1], page: page - 1,
-  //   }));
-  // };
-
   return (
     <>
       {results.map((r) => <SearchResultItem key={r.id} result={r} />)}
       <hr />
-      <span>{`${paginationData} of ${items}`}</span>
+      <span>{`${fromItem} - ${toItem} of ${items}`}</span>
       <span />
       <span>
-        <button type="button" data-button="prev" onClick={handleClick}>‹ Prev</button>
-        <button type="button" data-button="next" onClick={handleClick}>Next ›</button>
+        <button className={styles.pageBtn} type="button" data-button="prev" onClick={handleClick}>
+          <FontAwesomeIcon icon={faChevronLeft} />
+          {' '}
+          Prev
+        </button>
+        {' '}
+        <button className={styles.pageBtn} type="button" data-button="next" onClick={handleClick}>
+          Next
+          {' '}
+          <FontAwesomeIcon icon={faChevronRight} />
+        </button>
       </span>
     </>
   );

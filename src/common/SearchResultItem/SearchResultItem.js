@@ -1,4 +1,6 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import styles from './SearchResultItem.module.scss';
 import albumNoArt from '../no-album-art.jpeg';
 
@@ -29,8 +31,8 @@ const SearchResultItem = ({ result }) => {
         </h3>
         <p className={styles.resultType}>{resultType}</p>
       </div>
-      <div className="d-flex align-items-start">
-        <p className="chevron">›</p>
+      <div className="d-flex">
+        <FontAwesomeIcon icon={faChevronRight} />
       </div>
     </li>
   );

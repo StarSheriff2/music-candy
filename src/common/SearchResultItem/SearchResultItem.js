@@ -24,12 +24,14 @@ const SearchResultItem = ({ result }) => {
       <div className={styles.resultData}>
         <h3 className={styles.resultTitle}>
           {result.title}
+        </h3>
+        <p className={styles.resultType}>
+          {resultType}
+          <span>{result.country && `· ${result.country}`}</span>
           {' '}
           <span>{result.year && `(${result.year})`}</span>
-          {' '}
-          <span>{result.country && `· ${result.country}`}</span>
-        </h3>
-        <p className={styles.resultType}>{resultType}</p>
+        </p>
+
       </div>
       <div className="d-flex">
         <FontAwesomeIcon icon={faChevronRight} />

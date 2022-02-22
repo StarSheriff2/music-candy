@@ -22,15 +22,24 @@ const SearchResults = ({ results, pagination }) => {
     paginationData = `${(page - 1) * per_page + 1} - ${(page !== pages) ? page * per_page : items}`;
   }
 
-  const handleNextClick = () => {
-    let params = new URLSearchParams(urls.next);
+  const handleClick = (e) => {
+    const pagBtn = e.target.dataset.button;
+    const goToPage = (pagBtn === 'next') ? page + 1 : page - 1;
+    let params = new URLSearchParams(urls[pagBtn]);
+
     params = Object.values(Object.fromEntries(params.entries()));
     dispatch(search({
-      slug: params[0], type: params[1], page: page + 1,
+      slug: params[0], type: params[1], page: goToPage,
     }));
   };
 
-
+  // const handlePrevClick = () => {
+  //   let params = new URLSearchParams(urls.prev);
+  //   params = Object.values(Object.fromEntries(params.entries()));
+  //   dispatch(search({
+  //     slug: params[0], type: params[1], page: page - 1,
+  //   }));
+  // };
 
   return (
     <>
@@ -39,8 +48,8 @@ const SearchResults = ({ results, pagination }) => {
       <span>{`${paginationData} of ${items}`}</span>
       <span />
       <span>
-        <button type="button" onClick={handlePrevClick}>‹ Prev</button>
-        <button type="button" onClick={handleNextClick}>Next ›</button>
+        <button type="button" data-button="prev" onClick={handleClick}>‹ Prev</button>
+        <button type="button" data-button="next" onClick={handleClick}>Next ›</button>
       </span>
     </>
   );

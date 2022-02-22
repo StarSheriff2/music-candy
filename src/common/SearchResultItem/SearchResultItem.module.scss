@@ -2,7 +2,7 @@
   display: grid;
   height: 4rem;
   margin-bottom: 1rem;
-  grid-template-columns: auto 5fr 1fr;
+  grid-template-columns: auto 5fr 1fr 1fr;
   width: 100%;
 }
 
@@ -15,18 +15,19 @@
 
 .resultData {
   display: grid;
-  grid-template-rows: 2fr 1fr;
+  height: 4rem;
+  grid-template-rows: 60% 40%;
+  row-gap: 0.4rem;
 }
 
-.resultTitle {
-  margin-bottom: 0.2rem;
+.resultTitle,
+.resultType {
   font-size: 1.2rem;
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .resultType {
   font-size: 1rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }

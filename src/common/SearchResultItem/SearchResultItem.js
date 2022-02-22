@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faChevronRight, faAdd } from '@fortawesome/free-solid-svg-icons';
 import styles from './SearchResultItem.module.scss';
 import albumNoArt from '../no-album-art.jpeg';
 
@@ -31,7 +31,9 @@ const SearchResultItem = ({ result }) => {
           {' '}
           <span>{result.year && `(${result.year})`}</span>
         </p>
-
+      </div>
+      <div className="d-flex">
+        <FontAwesomeIcon icon={faAdd} />
       </div>
       <div className="d-flex">
         <FontAwesomeIcon icon={faChevronRight} />

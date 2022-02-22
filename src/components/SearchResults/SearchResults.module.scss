@@ -1,0 +1,19 @@
+@import '../../styles/abstracts/variables';
+
+.pageBtn {
+  border: none;
+  background-color: transparent;
+  color: $secondary-color;
+
+  &:hover {
+    color: $primary-color;
+  }
+
+  &:disabled {
+    color: $complementary-color;
+  }
+}
+
+.pageBtn:nth-child(1) {
+  margin-left: 1rem;
+}

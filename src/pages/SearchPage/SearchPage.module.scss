@@ -2,8 +2,11 @@
 
 .searchPage {
   height: calc(100vh - 7rem);
+  display: grid;
+  grid-template-rows: auto auto 3fr 1fr;
+  row-gap: 1rem;
 }
 
-.thumb {
-  width: 120px;
+.resultsSection {
+  overflow: scroll;
 }

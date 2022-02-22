@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from './SearchPage.module.scss';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import { discogsSearchState } from '../../slices/discogsSearch';
-import albumNoArt from '../../common/no-album-art.jpeg';
+import SearchResults from '../../components/SearchResults/SearchResults';
 
 import { clearMessage } from '../../slices/message';
 
 const SearchPage = () => {
   const { message } = useSelector((state) => state.message);
-  const { results, status } = useSelector(discogsSearchState);
+  const { results, status, pagination } = useSelector(discogsSearchState);
 
   const dispatch = useDispatch();
 
@@ -23,19 +23,13 @@ const SearchPage = () => {
 
       <SearchBar />
 
-      <div>
-        {status === 'fulfilled' && (
-          results.map((r) => (
-            <div key={r.id}>
-              <h2>{r.title}</h2>
-              <img
-                src={(r.thumb === '') ? albumNoArt : r.thumb}
-                alt="search result thumbnail"
-                className={styles.thumb}
-              />
-            </div>
-          ))
-        )}
+      <div className={styles.resultsSection}>
+        {status === 'fulfilled'
+          && (
+          <ul>
+            <SearchResults results={results} pagination={pagination} />
+          </ul>
+          )}
       </div>
       <div>
         MY Collection

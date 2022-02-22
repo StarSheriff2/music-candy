@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
@@ -42,13 +43,25 @@ const SearchResults = ({ results, pagination }) => {
       <span>{`${fromItem} - ${toItem} of ${items}`}</span>
       <span />
       <span>
-        <button className={styles.pageBtn} type="button" data-button="prev" onClick={handleClick}>
+        <button
+          className={styles.pageBtn}
+          type="button"
+          data-button="prev"
+          onClick={handleClick}
+          disabled={!('prev' in urls)}
+        >
           <FontAwesomeIcon icon={faChevronLeft} />
           {' '}
           Prev
         </button>
         {' '}
-        <button className={styles.pageBtn} type="button" data-button="next" onClick={handleClick}>
+        <button
+          className={styles.pageBtn}
+          type="button"
+          data-button="next"
+          onClick={handleClick}
+          disabled={!('next' in urls)}
+        >
           Next
           {' '}
           <FontAwesomeIcon icon={faChevronRight} />
@@ -57,5 +70,14 @@ const SearchResults = ({ results, pagination }) => {
     </>
   );
 };
+
+SearchResults.propTypes = {
+  results: PropTypes.arrayOf(PropTypes.shape({
+    Object,
+  })).isRequired,
+  pagination: PropTypes.shape(
+    null
+  ).isRequired,
+}
 
 export default SearchResults;

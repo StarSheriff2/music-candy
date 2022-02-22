@@ -8,6 +8,10 @@
   &:hover {
     color: $primary-color;
   }
+
+  &:disabled {
+    color: $complementary-color;
+  }
 }
 
 .pageBtn:nth-child(1) {

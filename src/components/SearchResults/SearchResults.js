@@ -14,9 +14,13 @@ const SearchResults = ({ results, pagination }) => {
     page, pages, items, per_page, urls,
   } = pagination;
 
-  // <span>{`${(page !== pages) ? (page - 1) * 50 + 1 : (items - ((page - 1) * 50)) + 1} – ${(items >= 50) ? 50 : items} of ${items}`}</span>;
+  let paginationData;
 
-  // const { query, setQuery } = useFetchResults();
+  if (pages === 1) {
+    paginationData = `1 - ${items}`;
+  } else {
+    paginationData = `${(page - 1) * per_page + 1} - ${(page !== pages) ? page * per_page : items}`;
+  }
 
   const handleNextClick = () => {
     let params = new URLSearchParams(urls.next);
@@ -26,14 +30,16 @@ const SearchResults = ({ results, pagination }) => {
     }));
   };
 
+
+
   return (
     <>
       {results.map((r) => <SearchResultItem key={r.id} result={r} />)}
       <hr />
-      <span>{(pages === 1) ? `1 - ${items} of ${items}` : `${(page - 1) * per_page + 1} - ${(page !== pages) ? page * per_page : items} of ${items}`}</span>
+      <span>{`${paginationData} of ${items}`}</span>
       <span />
       <span>
-        ‹ Prev
+        <button type="button" onClick={handlePrevClick}>‹ Prev</button>
         <button type="button" onClick={handleNextClick}>Next ›</button>
       </span>
     </>

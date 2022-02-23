@@ -22,24 +22,24 @@ export const get = createAsyncThunk(
   },
 );
 
-// export const newReminder = createAsyncThunk(
-//   'reminders/newReminder',
-//   async (params, thunkAPI) => {
-//     try {
-//       const response = await weatherAppCalendarApi.createReminder(params);
-//       thunkAPI.dispatch(fetchReminders());
-//       return response.data;
-//     } catch (error) {
-//       const message = (error.response
-//           && error.response.data
-//           && error.response.data.message)
-//         || error.message
-//         || error.toString();
-//       thunkAPI.dispatch(setMessage(message));
-//       return thunkAPI.rejectWithValue();
-//     }
-//   },
-// );
+export const addRelease = createAsyncThunk(
+  'discogsCollection/addRelease',
+  async (releaseId, thunkAPI) => {
+    try {
+      const response = await discogsApiService.addToCollection(releaseId);
+      thunkAPI.dispatch(get());
+      return response.data;
+    } catch (error) {
+      const message = (error.response
+          && error.response.data
+          && error.response.data.message)
+        || error.message
+        || error.toString();
+      thunkAPI.dispatch(setMessage(message));
+      return thunkAPI.rejectWithValue();
+    }
+  },
+);
 
 const initialState = {
   status: 'idle',
@@ -65,6 +65,15 @@ const discogsCollectionSlice = createSlice({
       state.status = 'rejected';
       state.collection = [];
       state.pagination = {};
+    },
+    [addRelease.pending]: (state) => {
+      state.status = 'pending';
+    },
+    [addRelease.fulfilled]: (state) => {
+      state.status = 'fulfilled';
+    },
+    [addRelease.rejected]: (state) => {
+      state.status = 'rejected';
     },
   },
 });

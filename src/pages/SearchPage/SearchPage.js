@@ -4,6 +4,7 @@ import styles from './SearchPage.module.scss';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import { discogsSearchState } from '../../slices/discogsSearch';
 import SearchResults from '../../components/SearchResults/SearchResults';
+import Collection from '../../components/Collection/Collection';
 
 import { clearMessage } from '../../slices/message';
 
@@ -31,8 +32,8 @@ const SearchPage = () => {
           </ul>
           )}
       </div>
-      <div>
-        MY Collection
+      <div className={styles.collectionSection}>
+        <Collection />
       </div>
 
       {message && (

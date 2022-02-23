@@ -38,7 +38,8 @@ const useFetchResults = () => {
         fetch();
       }, 1000);
     } else {
-      setData({ ...data, results: [] });
+      clearTimeout(timeoutId);
+      setData((prevData) => ({ ...prevData, results: [] }));
     }
 
     return () => {

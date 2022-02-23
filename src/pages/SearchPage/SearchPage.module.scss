@@ -3,10 +3,15 @@
 .searchPage {
   height: calc(100vh - 7rem);
   display: grid;
-  grid-template-rows: auto auto 3fr 1fr;
+  grid-template-rows: auto auto 1fr 200px;
   row-gap: 1rem;
 }
 
 .resultsSection {
   overflow: scroll;
+}
+
+.collectionSection {
+  display: grid;
+  grid-template-rows: 10% 1fr;
 }

@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronRight, faAdd } from '@fortawesome/free-solid-svg-icons';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import AddReleaseButton from '../../components/AddReleaseButton/AddReleaseButton';
 import styles from './SearchResultItem.module.scss';
 import albumNoArt from '../no-album-art.jpeg';
 
@@ -33,9 +34,7 @@ const SearchResultItem = ({ result }) => {
           <span>{result.year && `(${result.year})`}</span>
         </p>
       </div>
-      <div className="d-flex">
-        <FontAwesomeIcon className={styles.addButton} icon={faAdd} />
-      </div>
+      {(result.type === 'release') ? <AddReleaseButton releaseId={result.id} /> : <div /> }
       <div className="d-flex">
         <FontAwesomeIcon icon={faChevronRight} />
       </div>
@@ -50,6 +49,7 @@ SearchResultItem.propTypes = {
     title: PropTypes.string.isRequired,
     country: PropTypes.string,
     year: PropTypes.string,
+    id: PropTypes.number.isRequired,
   }).isRequired,
 };
 

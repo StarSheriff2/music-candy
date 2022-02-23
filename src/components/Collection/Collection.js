@@ -25,7 +25,7 @@ const Collection = () => {
           {collection.map((c) => {
             const { basic_information: release } = c;
             return (
-              <div className="d-flex flex-column p-3" key={c.id}>
+              <div className="d-flex flex-column p-3" key={c.instance_id}>
                 <img
                   src={(release.thumb === '') ? albumNoArt : release.thumb}
                   alt="release thumbnail"

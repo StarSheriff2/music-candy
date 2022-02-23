@@ -16,7 +16,7 @@ export const search = createAsyncThunk(
           && error.response.data.message)
         || error.message
         || error.toString();
-      thunkAPI.dispatch(setMessage({message, type: 'danger'}));
+      thunkAPI.dispatch(setMessage({ message, type: 'danger' }));
       return thunkAPI.rejectWithValue();
     }
   },

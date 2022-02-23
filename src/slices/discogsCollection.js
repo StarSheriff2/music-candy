@@ -16,7 +16,7 @@ export const get = createAsyncThunk(
           && error.response.data.message)
         || error.message
         || error.toString();
-      thunkAPI.dispatch(setMessage({message, type: 'danger'}));
+      thunkAPI.dispatch(setMessage({ message, type: 'danger' }));
       return thunkAPI.rejectWithValue();
     }
   },
@@ -27,8 +27,8 @@ export const addRelease = createAsyncThunk(
   async (releaseId, thunkAPI) => {
     try {
       const response = await discogsApiService.addToCollection(releaseId);
+      thunkAPI.dispatch(setMessage({ message: 'Release Added', type: 'success' }));
       thunkAPI.dispatch(get());
-      thunkAPI.dispatch(setMessage({ message: 'Release Added', type: 'success' }))
       return response.data;
     } catch (error) {
       const message = (error.response
@@ -46,6 +46,7 @@ const initialState = {
   status: 'idle',
   collection: [],
   pagination: {},
+  addReleaseStatus: 'idle',
 };
 
 const discogsCollectionSlice = createSlice({
@@ -68,13 +69,13 @@ const discogsCollectionSlice = createSlice({
       state.pagination = {};
     },
     [addRelease.pending]: (state) => {
-      state.status = 'pending';
+      state.addReleaseStatus = 'pending';
     },
     [addRelease.fulfilled]: (state) => {
-      state.status = 'fulfilled';
+      state.addReleaseStatus = 'fulfilled';
     },
     [addRelease.rejected]: (state) => {
-      state.status = 'rejected';
+      state.addReleaseStatus = 'rejected';
     },
   },
 });

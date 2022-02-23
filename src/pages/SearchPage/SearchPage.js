@@ -38,7 +38,7 @@ const SearchPage = () => {
       </div>
 
       {message && (
-        <Message message={message} type={type}/>
+        <Message message={message} type={type} />
       )}
     </div>
   );

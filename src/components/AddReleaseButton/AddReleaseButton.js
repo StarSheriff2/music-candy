@@ -5,24 +5,25 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAdd } from '@fortawesome/free-solid-svg-icons';
 import Spinner from 'react-bootstrap/Spinner';
 import { addRelease } from '../../slices/discogsCollection';
+import { clearMessage } from '../../slices/message';
 import styles from './AddReleaseButton.module.scss';
 
 const AddReleaseButton = ({ releaseId }) => {
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(clearMessage());
+  }, [dispatch]);
+
   const [isLoading, setLoading] = useState(false);
 
-  useEffect(() => {
+  useEffect(async () => {
     if (isLoading) {
-      const dispatchAction = async () => {
-        const { meta } = await dispatch(addRelease(releaseId));
-        if (meta.requestStatus === 'fulfilled') {
-          setLoading(false);
-        }
-      };
-      dispatchAction();
+      const { meta } = await dispatch(addRelease(releaseId));
+      if (meta.requestStatus === 'fulfilled') {
+        setLoading(false);
+      }
     }
-
     return () => {
       setLoading(false);
     };

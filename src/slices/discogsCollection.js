@@ -6,7 +6,7 @@ import discogsApiService from '../services/discogs.service';
 
 export const get = createAsyncThunk(
   'discogsCollection/get',
-  async (query, thunkAPI) => {
+  async (thunkAPI) => {
     try {
       const response = await discogsApiService.getCollection();
       return response.data;
@@ -16,7 +16,7 @@ export const get = createAsyncThunk(
           && error.response.data.message)
         || error.message
         || error.toString();
-      thunkAPI.dispatch(setMessage(message));
+      thunkAPI.dispatch(setMessage({message, type: 'danger'}));
       return thunkAPI.rejectWithValue();
     }
   },
@@ -28,6 +28,7 @@ export const addRelease = createAsyncThunk(
     try {
       const response = await discogsApiService.addToCollection(releaseId);
       thunkAPI.dispatch(get());
+      thunkAPI.dispatch(setMessage({ message: 'Release Added', type: 'success' }))
       return response.data;
     } catch (error) {
       const message = (error.response
@@ -35,7 +36,7 @@ export const addRelease = createAsyncThunk(
           && error.response.data.message)
         || error.message
         || error.toString();
-      thunkAPI.dispatch(setMessage(message));
+      thunkAPI.dispatch(setMessage({ message, type: 'danger' }));
       return thunkAPI.rejectWithValue();
     }
   },

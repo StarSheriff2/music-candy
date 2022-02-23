@@ -8,6 +8,7 @@ import styles from './AddReleaseButton.module.scss';
 
 const AddReleaseButton = ({ releaseId }) => {
   const dispatch = useDispatch();
+
   const handleClick = () => dispatch(addRelease(releaseId));
 
   return (

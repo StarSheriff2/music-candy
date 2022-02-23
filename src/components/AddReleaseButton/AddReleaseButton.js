@@ -5,9 +5,16 @@ import { faAdd } from '@fortawesome/free-solid-svg-icons';
 import styles from './AddReleaseButton.module.scss';
 
 const AddReleaseButton = ({ releaseId }) => {
+
   return (
     <div className="d-flex">
-      <FontAwesomeIcon className={styles.addButton} icon={faAdd} />
+      <button
+        type="button"
+        className={styles.addButton}
+      >
+        <FontAwesomeIcon
+          icon={faAdd} />
+      </button>
     </div>
   )
 }

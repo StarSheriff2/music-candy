@@ -1,14 +1,16 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import Message from '../../common/Message/Message';
 import styles from './SearchPage.module.scss';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import { discogsSearchState } from '../../slices/discogsSearch';
 import SearchResults from '../../components/SearchResults/SearchResults';
+import Collection from '../../components/Collection/Collection';
 
-import { clearMessage } from '../../slices/message';
+import { messageState, clearMessage } from '../../slices/message';
 
 const SearchPage = () => {
-  const { message } = useSelector((state) => state.message);
+  const { message, type } = useSelector(messageState);
   const { results, status, pagination } = useSelector(discogsSearchState);
 
   const dispatch = useDispatch();
@@ -31,14 +33,12 @@ const SearchPage = () => {
           </ul>
           )}
       </div>
-      <div>
-        MY Collection
+      <div className={styles.collectionSection}>
+        <Collection />
       </div>
 
-      {message && (
-      <div className="alert alert-info" role="alert">
-        {message}
-      </div>
+      {!(message === '') && (
+        <Message message={message} type={type} />
       )}
     </div>
   );

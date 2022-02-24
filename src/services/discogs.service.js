@@ -13,6 +13,10 @@ const search = ({
   slug, type, page, perPage,
 }) => api.get(`database/search?q=${slug}&type=${type}&page=${page}&per_page=${perPage}`);
 
+const getCollection = (sort) => api.get(`users/${process.env.REACT_APP_DISCOGS_USER}/collection/folders/0/releases?sort=${sort}&sort_order=asc`);
+
+const addToCollection = (releaseId) => api.post(`/users/${process.env.REACT_APP_DISCOGS_USER}/collection/folders/1/releases/${releaseId}`);
+
 const getArtistInfo = ({ id }) => api.get(`artists/${id}`);
 
 const getArtistReleases = ({ id }) => api.get(`artists/${id}/releases?sort=year&sort_order=desc`)
@@ -60,12 +64,14 @@ const getVersionDetails = ({ id }) => api.get(`releases/${id}`);
 // oauth_signature_method="PLAINTEXT",oauth_timestamp="1644995976632"
 
 const discogsApiService = {
+  getCollection,
   search,
   getArtistInfo,
   getArtistReleases,
   getReleaseInfo,
   getReleaseVersions,
   getVersionDetails,
+  addToCollection,
 };
 
 export default discogsApiService;

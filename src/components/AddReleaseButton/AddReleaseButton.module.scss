@@ -1,0 +1,12 @@
+@import '../../styles/abstracts/variables';
+
+.addButton {
+  color: $primary-color;
+  cursor: pointer;
+  background-color: transparent;
+
+  &:disabled {
+    color: $primary-color-disabled;
+    cursor: default;
+  }
+}

@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAdd } from '@fortawesome/free-solid-svg-icons';
 import Spinner from 'react-bootstrap/Spinner';
-import { addRelease } from '../../slices/discogsCollection';
+import { addRelease, discogsCollectionState } from '../../slices/discogsCollection';
 import { clearMessage } from '../../slices/message';
 import styles from './AddReleaseButton.module.scss';
 
 const AddReleaseButton = ({ releaseId }) => {
   const dispatch = useDispatch();
+
+  const { addReleaseStatus } = useSelector(discogsCollectionState);
 
   useEffect(() => {
     dispatch(clearMessage());
@@ -19,15 +21,17 @@ const AddReleaseButton = ({ releaseId }) => {
 
   useEffect(async () => {
     if (isLoading) {
-      const { meta } = await dispatch(addRelease(releaseId));
-      if (meta.requestStatus === 'fulfilled') {
-        setLoading(false);
-      }
+      dispatch(addRelease(releaseId));
     }
+
+    if (addReleaseStatus === 'fulfilled') {
+      setLoading(false);
+    }
+
     return () => {
       setLoading(false);
     };
-  }, [isLoading]);
+  }, [isLoading, addReleaseStatus]);
 
   const handleClick = () => setLoading(true);
 

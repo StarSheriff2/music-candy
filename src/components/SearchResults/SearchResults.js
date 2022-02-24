@@ -1,20 +1,15 @@
 /* eslint-disable camelcase */
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { search } from '../../slices/discogsSearch';
 import SearchResultItem from '../../common/SearchResultItem/SearchResultItem';
-import { clearMessage } from '../../slices/message';
 import styles from './SearchResults.module.scss';
 
 const SearchResults = ({ results, pagination }) => {
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(clearMessage());
-  }, [dispatch]);
 
   const {
     page, pages, items, per_page, urls,

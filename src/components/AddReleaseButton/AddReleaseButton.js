@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,22 +6,20 @@ import { faAdd } from '@fortawesome/free-solid-svg-icons';
 import Spinner from 'react-bootstrap/Spinner';
 import { addRelease, discogsCollectionState } from '../../slices/discogsCollection';
 import { clearMessage } from '../../slices/message';
+import SearchPageSortingContext from '../../Context';
 import styles from './AddReleaseButton.module.scss';
 
 const AddReleaseButton = ({ releaseId }) => {
+  const sort = useContext(SearchPageSortingContext);
   const dispatch = useDispatch();
 
   const { addReleaseStatus } = useSelector(discogsCollectionState);
 
-  useEffect(() => {
-    dispatch(clearMessage());
-  }, [dispatch]);
-
   const [isLoading, setLoading] = useState(false);
 
-  useEffect(async () => {
+  useEffect(() => {
     if (isLoading) {
-      dispatch(addRelease(releaseId));
+      dispatch(addRelease({ releaseId, sort }));
     }
 
     if (addReleaseStatus === 'fulfilled') {
@@ -30,8 +28,9 @@ const AddReleaseButton = ({ releaseId }) => {
 
     return () => {
       setLoading(false);
+      dispatch(clearMessage());
     };
-  }, [isLoading, addReleaseStatus]);
+  }, [isLoading]);
 
   const handleClick = () => setLoading(true);
 

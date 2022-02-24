@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import discogsApiService from '../services/discogs.service';
-import { setMessage } from '../slices/message';
+import { setMessage, clearMessage } from '../slices/message';
 
 const useFetchResults = () => {
   const dispatch = useDispatch();
@@ -44,6 +44,7 @@ const useFetchResults = () => {
 
     return () => {
       clearTimeout(timeoutId);
+      dispatch(clearMessage());
     };
   }, [data.query.slug, data.query.type]);
 

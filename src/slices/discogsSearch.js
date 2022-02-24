@@ -22,25 +22,6 @@ export const search = createAsyncThunk(
   },
 );
 
-// export const newReminder = createAsyncThunk(
-//   'reminders/newReminder',
-//   async (params, thunkAPI) => {
-//     try {
-//       const response = await weatherAppCalendarApi.createReminder(params);
-//       thunkAPI.dispatch(fetchReminders());
-//       return response.data;
-//     } catch (error) {
-//       const message = (error.response
-//           && error.response.data
-//           && error.response.data.message)
-//         || error.message
-//         || error.toString();
-//       thunkAPI.dispatch(setMessage(message));
-//       return thunkAPI.rejectWithValue();
-//     }
-//   },
-// );
-
 const initialState = {
   status: 'idle',
   results: [],

@@ -15,8 +15,8 @@ const SearchResults = ({ results, pagination }) => {
     page, pages, items, per_page, urls,
   } = pagination;
 
-  let fromItem = 1; let
-    toItem = items;
+  let fromItem = 1;
+  let toItem = items;
 
   if (pages !== 1) {
     fromItem = (page - 1) * per_page + 1;

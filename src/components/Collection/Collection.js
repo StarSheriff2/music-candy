@@ -23,7 +23,8 @@ const Collection = () => {
     <>
       <div className="d-flex justify-content-between">
         <h2 className={styles.title}>My Collection</h2>
-        <label htmlFor="sort">Sort by
+        <label htmlFor="sort">
+          Sort by
           <select id="sort" name="sort" onChange={handleSelect} className={styles.sortDd}>
             <option value="artist">Artist</option>
             <option value="title">Release Title</option>

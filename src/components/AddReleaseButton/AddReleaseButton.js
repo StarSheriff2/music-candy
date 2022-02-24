@@ -6,7 +6,7 @@ import { faAdd } from '@fortawesome/free-solid-svg-icons';
 import Spinner from 'react-bootstrap/Spinner';
 import { addRelease, discogsCollectionState } from '../../slices/discogsCollection';
 import { clearMessage } from '../../slices/message';
-import { SearchPageSortingContext } from '../../pages/SearchPage/SearchPage';
+import SearchPageSortingContext from '../../Context';
 import styles from './AddReleaseButton.module.scss';
 
 const AddReleaseButton = ({ releaseId }) => {
@@ -23,7 +23,7 @@ const AddReleaseButton = ({ releaseId }) => {
 
   useEffect(() => {
     if (isLoading) {
-      dispatch(addRelease({releaseId, sort}));
+      dispatch(addRelease({ releaseId, sort }));
     }
 
     if (addReleaseStatus === 'fulfilled') {

@@ -24,7 +24,7 @@ export const get = createAsyncThunk(
 
 export const addRelease = createAsyncThunk(
   'discogsCollection/addRelease',
-  async ({releaseId, sort}, thunkAPI) => {
+  async ({ releaseId, sort }, thunkAPI) => {
     try {
       const response = await discogsApiService.addToCollection(releaseId);
       thunkAPI.dispatch(setMessage({ message: 'Release Added', type: 'success' }));

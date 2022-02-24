@@ -17,7 +17,7 @@ const Collection = ({ sort, setSort }) => {
 
   useEffect(() => {
     if (collectionStatus === 'fulfilled') dispatch(get(sort));
-  }, [sort])
+  }, [sort]);
 
   const handleSelect = (event) => setSort(event.target.value);
 

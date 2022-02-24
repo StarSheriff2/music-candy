@@ -24,7 +24,7 @@ const Collection = ({ sort, setSort }) => {
   }, [sort]);
 
   const handleSelect = (event) => {
-    setSort(event.target.value)
+    setSort(event.target.value);
     dispatch(clearMessage());
   };
 
@@ -68,8 +68,8 @@ const Collection = ({ sort, setSort }) => {
 };
 
 Collection.propTypes = {
-  // sort: PropTypes.string.isRequired,
-  // setSort: PropTypes.object.isRequired,
+  sort: PropTypes.string.isRequired,
+  setSort: PropTypes.func.isRequired,
 };
 
 export default Collection;

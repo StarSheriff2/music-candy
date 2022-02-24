@@ -8,7 +8,7 @@ import { search } from '../../slices/discogsSearch';
 import SearchResultItem from '../../common/SearchResultItem/SearchResultItem';
 import styles from './SearchResults.module.scss';
 
-const SearchResults = ({ results, pagination, sort }) => {
+const SearchResults = ({ results, pagination }) => {
   const dispatch = useDispatch();
 
   const {
@@ -38,7 +38,7 @@ const SearchResults = ({ results, pagination, sort }) => {
 
   return (
     <>
-      {results.map((r) => <SearchResultItem key={r.id} result={r} sort={sort} />)}
+      {results.map((r) => <SearchResultItem key={r.id} result={r} />)}
       <hr />
       <span>{`${fromItem} - ${toItem} of ${items}`}</span>
       <span />

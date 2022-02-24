@@ -1,23 +1,25 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { get, discogsCollectionState } from '../../slices/discogsCollection';
 import styles from './Collection.module.scss';
 import albumNoArt from '../../common/no-album-art.jpeg';
 
-const Collection = () => {
+const Collection = ({ sort, setSort }) => {
   const dispatch = useDispatch();
 
   const { status: collectionStatus, collection } = useSelector(discogsCollectionState);
 
   useEffect(() => {
     if (collectionStatus === 'idle') {
-      dispatch(get());
+      dispatch(get(sort));
     }
   }, []);
 
-  const handleSelect = (event) => {
-    dispatch(get(event.target.value));
-  };
+  useEffect(() => {
+    if (collectionStatus === 'fulfilled') dispatch(get(sort));
+  }, [sort])
+
+  const handleSelect = (event) => setSort(event.target.value);
 
   return (
     <>

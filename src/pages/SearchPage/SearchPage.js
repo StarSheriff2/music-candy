@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Message from '../../common/Message/Message';
 import styles from './SearchPage.module.scss';
@@ -8,16 +8,19 @@ import SearchResults from '../../components/SearchResults/SearchResults';
 import Collection from '../../components/Collection/Collection';
 
 import { messageState, clearMessage } from '../../slices/message';
+export const SearchPageSortingContext = createContext('artist');
 
 const SearchPage = () => {
   const { message, type } = useSelector(messageState);
   const { results, status, pagination } = useSelector(discogsSearchState);
+  const [sort, setSort] = useState('artist');
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(clearMessage());
   }, [dispatch]);
+
 
   return (
     <div className={styles.searchPage}>
@@ -29,12 +32,20 @@ const SearchPage = () => {
         {status === 'fulfilled'
           && (
           <ul>
-            <SearchResults results={results} pagination={pagination} />
+            <SearchPageSortingContext.Provider value={sort}>
+              <SearchResults
+                results={results}
+                pagination={pagination}
+              />
+            </SearchPageSortingContext.Provider>
           </ul>
           )}
       </div>
       <div className={styles.collectionSection}>
-        <Collection />
+        <Collection
+          sort={sort}
+          setSort={setSort}
+        />
       </div>
 
       {!(message === '') && (

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { get, discogsCollectionState } from '../../slices/discogsCollection';
 import { clearMessage } from '../../slices/message';
@@ -9,7 +10,7 @@ const Collection = ({ sort, setSort }) => {
   const dispatch = useDispatch();
 
   const {
-    addReleaseStatus: collectionStatus, collection, pagination
+    status: collectionStatus, collection, pagination,
   } = useSelector(discogsCollectionState);
 
   useEffect(() => {
@@ -20,13 +21,12 @@ const Collection = ({ sort, setSort }) => {
 
   useEffect(() => {
     if (collectionStatus === 'fulfilled') dispatch(get(sort));
-
-    return () => {
-      dispatch(clearMessage());
-    };
   }, [sort]);
 
-  const handleSelect = (event) => setSort(event.target.value);
+  const handleSelect = (event) => {
+    setSort(event.target.value)
+    dispatch(clearMessage());
+  };
 
   return (
     <>
@@ -67,8 +67,9 @@ const Collection = ({ sort, setSort }) => {
   );
 };
 
-// Collection.propTypes = {
-
-// }
+Collection.propTypes = {
+  // sort: PropTypes.string.isRequired,
+  // setSort: PropTypes.object.isRequired,
+};
 
 export default Collection;

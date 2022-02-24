@@ -33,11 +33,11 @@ const Collection = ({ sort, setSort }) => {
           </select>
         </label>
       </div>
-      <div className="d-flex overflow-scroll justify-content-start">
+      <div className="d-flex overflow-scroll justify-content-between">
         {collection.map((c) => {
           const { basic_information: release } = c;
           return (
-            <div className="d-flex flex-column p-3" key={c.instance_id}>
+            <div className={`flex-column p-3 flex-shrink-0 flex-grow-0 ${styles.releaseCard}`} key={c.instance_id}>
               <img
                 src={(release.thumb === '') ? albumNoArt : release.thumb}
                 alt="release thumbnail"

@@ -7,7 +7,7 @@ import albumNoArt from '../../common/no-album-art.jpeg';
 const Collection = ({ sort, setSort }) => {
   const dispatch = useDispatch();
 
-  const { status: collectionStatus, collection } = useSelector(discogsCollectionState);
+  const { status: collectionStatus, collection, pagination } = useSelector(discogsCollectionState);
 
   useEffect(() => {
     if (collectionStatus === 'idle') {
@@ -24,7 +24,7 @@ const Collection = ({ sort, setSort }) => {
   return (
     <>
       <div className="d-flex justify-content-between">
-        <h2 className={styles.title}>My Collection</h2>
+        <h2 className={styles.title}>My Collection <span>{`(${pagination.items})`}</span></h2>
         <label htmlFor="sort">
           Sort by
           <select id="sort" name="sort" onChange={handleSelect} className={styles.sortDd}>

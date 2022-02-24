@@ -1,0 +1,19 @@
+@import './../styles/abstracts/variables';
+
+.nav {
+  border: solid blue 2px;
+  height: 7rem;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  color: $primary-color;
+}
+
+.link {
+  width: 100%;
+}
+
+.linkIcon {
+  color: $primary-color;
+  font-size: 4rem;
+}

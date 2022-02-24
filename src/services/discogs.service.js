@@ -13,7 +13,7 @@ const search = ({
   slug, type, page, perPage,
 }) => api.get(`database/search?q=${slug}&type=${type}&page=${page}&per_page=${perPage}`);
 
-const getCollection = () => api.get(`users/${process.env.REACT_APP_DISCOGS_USER}/collection/folders/0/releases?sort=artist&sort_order=asc`);
+const getCollection = (sort) => api.get(`users/${process.env.REACT_APP_DISCOGS_USER}/collection/folders/0/releases?sort=${sort}&sort_order=asc`);
 
 const addToCollection = (releaseId) => api.post(`/users/${process.env.REACT_APP_DISCOGS_USER}/collection/folders/1/releases/${releaseId}`);
 

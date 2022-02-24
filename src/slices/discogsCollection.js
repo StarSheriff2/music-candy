@@ -6,9 +6,9 @@ import discogsApiService from '../services/discogs.service';
 
 export const get = createAsyncThunk(
   'discogsCollection/get',
-  async (thunkAPI) => {
+  async (sort = 'artist', thunkAPI) => {
     try {
-      const response = await discogsApiService.getCollection();
+      const response = await discogsApiService.getCollection(sort);
       return response.data;
     } catch (error) {
       const message = (error.response

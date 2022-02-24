@@ -15,9 +15,21 @@ const Collection = () => {
     }
   }, []);
 
+  const handleSelect = (event) => {
+    dispatch(get(event.target.value));
+  };
+
   return (
     <>
-      <h2 className={styles.title}>My Collection</h2>
+      <div className="d-flex justify-content-between">
+        <h2 className={styles.title}>My Collection</h2>
+        <label htmlFor="sort">Sort by
+          <select id="sort" name="sort" onChange={handleSelect} className={styles.sortDd}>
+            <option value="artist">Artist</option>
+            <option value="title">Release Title</option>
+          </select>
+        </label>
+      </div>
       <div className="d-flex overflow-scroll justify-content-start">
         {collection.map((c) => {
           const { basic_information: release } = c;

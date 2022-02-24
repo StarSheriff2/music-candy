@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import Message from '../../common/Message/Message';
 import styles from './SearchPage.module.scss';
 import SearchBar from '../../components/SearchBar/SearchBar';
@@ -8,18 +8,12 @@ import SearchResults from '../../components/SearchResults/SearchResults';
 import Collection from '../../components/Collection/Collection';
 import SearchPageSortingContext from '../../Context';
 
-import { messageState, clearMessage } from '../../slices/message';
+import { messageState } from '../../slices/message';
 
 const SearchPage = () => {
   const { message, type } = useSelector(messageState);
   const { results, status, pagination } = useSelector(discogsSearchState);
   const [sort, setSort] = useState('artist');
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(clearMessage());
-  }, [dispatch]);
 
   return (
     <div className={styles.searchPage}>

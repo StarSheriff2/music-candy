@@ -15,10 +15,6 @@ const AddReleaseButton = ({ releaseId }) => {
 
   const { addReleaseStatus } = useSelector(discogsCollectionState);
 
-  useEffect(() => {
-    dispatch(clearMessage());
-  }, [dispatch]);
-
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -32,6 +28,7 @@ const AddReleaseButton = ({ releaseId }) => {
 
     return () => {
       setLoading(false);
+      dispatch(clearMessage());
     };
   }, [isLoading]);
 

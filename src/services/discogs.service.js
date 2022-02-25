@@ -17,10 +17,9 @@ const getCollection = (sort) => api.get(`users/${process.env.REACT_APP_DISCOGS_U
 
 const addToCollection = (releaseId) => api.post(`/users/${process.env.REACT_APP_DISCOGS_USER}/collection/folders/1/releases/${releaseId}`);
 
-const getArtistInfo = ({ id }) => api.get(`artists/${id}`);
+const getArtistInfo = (id) => api.get(`artists/${id}`);
 
-const getArtistReleases = ({ id }) => api.get(`artists/${id}/releases?sort=year&sort_order=desc`)
-  .filter((r) => r.type === 'master');
+const getArtistReleases = (id) => api.get(`artists/${id}/releases?sort=year&sort_order=desc`);
 
 const getReleaseInfo = ({ id }) => api.get(`masters/${id}`);
 

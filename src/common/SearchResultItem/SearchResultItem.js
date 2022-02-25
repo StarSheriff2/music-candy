@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import AddReleaseButton from '../../components/AddReleaseButton/AddReleaseButton';
+import DrillButton from '../DrillButton/DrillButton';
 import styles from './SearchResultItem.module.scss';
 import albumNoArt from '../no-album-art.jpeg';
 
@@ -35,9 +34,7 @@ const SearchResultItem = ({ result }) => {
         </p>
       </div>
       {(result.type === 'release') ? <AddReleaseButton releaseId={result.id} /> : <div /> }
-      <div className="d-flex">
-        <FontAwesomeIcon icon={faChevronRight} />
-      </div>
+      <DrillButton type={result.type} id={result.id} />
     </li>
   );
 };

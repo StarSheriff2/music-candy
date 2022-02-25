@@ -1,0 +1,9 @@
+@import '../../styles/abstracts/variables';
+
+.icon {
+  color: $complementary-color;
+
+  &:hover {
+    color: $complementary-color-hover
+  }
+}

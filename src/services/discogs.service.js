@@ -19,7 +19,7 @@ const addToCollection = (releaseId) => api.post(`/users/${process.env.REACT_APP_
 
 const getArtistInfo = (id) => api.get(`artists/${id}`);
 
-const getArtistReleases = (id) => api.get(`artists/${id}/releases?sort=year&sort_order=desc`);
+const getArtistReleases = (id, page) => api.get(`artists/${id}/releases?page=${page}&sort=year&sort_order=desc`);
 
 const getReleaseInfo = ({ id }) => api.get(`masters/${id}`);
 

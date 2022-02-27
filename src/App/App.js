@@ -22,11 +22,14 @@ const App = () => (
       />
       <Route path="collection" element={<Collection />} />
       <Route path="artists/:artistId" element={<Artist />} />
-      <Route path="*" element={
-        <main className={styles.noMatch}>
-          <p>There's nothing here</p>
-        </main>
-      }/>
+      <Route
+        path="*"
+        element={(
+          <main className={styles.noMatch}>
+            <p>There's nothing here</p>
+          </main>
+      )}
+      />
     </Routes>
     <nav
       className={`d-flex ${styles.nav}`}

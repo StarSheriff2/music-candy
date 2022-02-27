@@ -7,7 +7,7 @@ import styles from './Artist.module.scss';
 // import PropTypes from 'prop-types';
 
 const Artist = () => {
-  let params = useParams();
+  const params = useParams();
 
   const navigate = useNavigate();
 
@@ -19,10 +19,12 @@ const Artist = () => {
 
   useEffect(async () => {
     try {
-      const responseArtistI = await discogsApiService.getArtistInfo(params.artistId);
+      const responseArtistI = await discogsApiService.getArtistInfo(params.artistId, null);
       setArtistInfo(responseArtistI.data);
-      const responseArtistR = await discogsApiService.getArtistReleases(params.artistId);
-      setArtistReleases(responseArtistR.data);
+      const responseArtistR = await discogsApiService.getArtistReleases(params.artistId, null);
+      const { releases, pagination } = responseArtistR.data;
+      const releasesPayload = releases.filter((r) => r.type === 'release');
+      setArtistReleases({ releases: releasesPayload, pagination});
     } catch (error) {
       const message = (error.response
         && error.response.data
@@ -36,46 +38,50 @@ const Artist = () => {
       setArtistInfo(undefined);
       setArtistReleases(undefined);
       dispatch(clearMessage());
-    }
-  }, [])
+    };
+  }, []);
 
   return (
-      <>
-        <div>
-          <button type="button" onClick={() => navigate("/")}>go back</button>
-        </div>
-        <div className={`d-flex border-danger flex-column justify-content-start border ${styles.page}`}>
-            {(artistInfo) && (
-                  <>
-                    <div className={`d-flex flex-column justify-content-start ${styles.artistInfoWrapper}`}>
-                      {/* <> */}
-                        <img
-                          src={artistInfo.images[0].resource_url}
-                          alt="artist image"
-                          className={styles.artistImage}
-                        />
-                        <h2 className={styles.title}>{artistInfo.namevariations[0]}</h2>
-                        <h3 className="mb-4">Bio: </h3>
-                        <p className={styles.description}>{artistInfo.profile}</p>
-                        <h3 className="mb-4">Members: </h3>
-                        <ul className={styles.members}>
-                          {artistInfo.members.map((m) => (
-                            <li key={m.id}>{m.name}</li>
-                          ))}
-                        </ul>
-                      {/* </> */}
-                    </div>
-                    <div>
-                      <h3 className="my-4 text-center">Releases</h3>
-                      {artistReleases && artistReleases.releases.map((r) => (
-                          <p key={r.id}>{r.title}</p>
-                        ))}
-                    </div>
-                  </>
-            )}
-        </div>
-      </>
-  )
+    <>
+      <div>
+        <button type="button" onClick={() => navigate('/')}>go back</button>
+      </div>
+      <div className={`d-flex border-danger flex-column justify-content-start border ${styles.page}`}>
+        {(artistInfo) && (
+        <>
+          <div className={`d-flex flex-column justify-content-start ${styles.artistInfoWrapper}`}>
+            <img
+              src={artistInfo.images[0].resource_url}
+              alt="artist image"
+              className={styles.artistImage}
+            />
+            <h2 className={styles.title}>{artistInfo.namevariations[0]}</h2>
+            <h3 className="mb-4">Bio: </h3>
+            <p className={styles.description}>{artistInfo.profile}</p>
+
+            {(artistInfo.members)
+              ? (
+                <>
+                  <h3 className="mb-4">Members: </h3>
+                  <ul className={styles.members}>
+                    {artistInfo.members.map((m) => (
+                      <li key={m.id}>{m.name}</li>
+                    ))}
+                  </ul>
+                </>
+              ) : null}
+          </div>
+          <div>
+            <h3 className="my-4 text-center">Releases: </h3>
+            {artistReleases && artistReleases.releases.map((r) => (
+              <p key={r.id}>{r.title}</p>
+            ))}
+          </div>
+        </>
+        )}
+      </div>
+    </>
+  );
 };
 
 // Artist.propTypes = {

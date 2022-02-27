@@ -19,11 +19,11 @@ const SearchBar = () => {
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
       cancelScheduledFetch();
+      setData({ results: [], query: { slug: '', ...data.query } });
       const { slug, type } = data.query;
       dispatch(search({
         slug, type, perPage: 50, page: null,
       }));
-      setData({ results: [], query: { slug: '', ...data.query } });
     }
   };
 

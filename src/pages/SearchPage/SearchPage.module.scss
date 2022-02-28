@@ -1,15 +1,16 @@
 @import '../../styles/abstracts/variables';
 
 .searchPage {
-  height: calc(100vh - 7rem);
+  height: calc(100vh - 9.5rem);
   display: grid;
-  grid-template-rows: auto auto 1fr 200px;
+  grid-template-rows: auto 1fr 200px;
   row-gap: 1rem;
   position: relative;
 }
 
 .resultsSection {
   overflow: scroll;
+  text-align: center;
 }
 
 .collectionSection {

@@ -1,12 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { get, discogsCollectionState } from '../../slices/discogsCollection';
 import { clearMessage } from '../../slices/message';
 import styles from './Collection.module.scss';
+import SearchPageCollectionSorting from '../../Context';
 import albumNoArt from '../../common/no-album-art.jpeg';
 
-const Collection = ({ sort, setSort }) => {
+const Collection = ({ setSort }) => {
+  const sort = useContext(SearchPageCollectionSorting);
+  const previousSortValue = useRef(sort);
   const dispatch = useDispatch();
 
   const {
@@ -20,7 +23,10 @@ const Collection = ({ sort, setSort }) => {
   }, []);
 
   useEffect(() => {
-    if (collectionStatus === 'fulfilled') dispatch(get(sort));
+    if (sort !== previousSortValue.current) {
+      previousSortValue.current = sort;
+      dispatch(get(sort));
+    }
   }, [sort]);
 
   const handleSelect = (event) => {
@@ -33,11 +39,18 @@ const Collection = ({ sort, setSort }) => {
       <div className="d-flex justify-content-between">
         <h2 className={styles.title}>
           My Collection
-          <span>{`(${pagination.items})`}</span>
+          {pagination.items && (
+          <span>
+            {' '}
+            (
+            {pagination.items}
+            )
+          </span>
+          )}
         </h2>
         <label htmlFor="sort">
           Sort by
-          <select id="sort" name="sort" onChange={handleSelect} className={styles.sortDd}>
+          <select id="sort" name="sort" onChange={handleSelect} value={sort} className={styles.sortDd}>
             <option value="artist">Artist</option>
             <option value="title">Release Title</option>
           </select>
@@ -68,7 +81,6 @@ const Collection = ({ sort, setSort }) => {
 };
 
 Collection.propTypes = {
-  sort: PropTypes.string.isRequired,
   setSort: PropTypes.func.isRequired,
 };
 

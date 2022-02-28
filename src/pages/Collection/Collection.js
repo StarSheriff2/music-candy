@@ -1,14 +1,11 @@
 import React from 'react';
-// import PropTypes from 'prop-types'
+import PageHeader from '../../components/PageHeader/PageHeader';
 
 const Collection = () => (
   <div className="p-2">
-    <h2>Your Collection</h2>
+    <PageHeader />
+    <h2>...under construction</h2>
   </div>
 );
-
-// Collection.propTypes = {
-
-// }
 
 export default Collection;

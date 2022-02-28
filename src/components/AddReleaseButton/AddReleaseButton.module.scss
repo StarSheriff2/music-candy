@@ -9,4 +9,8 @@
     color: $primary-color-disabled;
     cursor: default;
   }
+
+  &:hover {
+    color: $primary-color-hover;
+  }
 }

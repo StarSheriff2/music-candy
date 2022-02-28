@@ -5,7 +5,7 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { search } from '../../slices/discogsSearch';
 import useFetchResults from '../../hooks/fetchResults';
 import styles from './SearchBar.module.scss';
-import SearchResultItem from '../../common/SearchResultItem/SearchResultItem';
+import SearchResults from '../SearchResults/SearchResults';
 
 const SearchBar = () => {
   const { data, setData, cancelScheduledFetch } = useFetchResults();
@@ -13,17 +13,17 @@ const SearchBar = () => {
   const dispatch = useDispatch();
 
   const handleSelect = (event) => {
-    setData({ ...data, query: { ...data.query, type: event.target.value } });
+    setData((prevData) => ({ ...prevData, query: { ...data.query, type: event.target.value } }));
   };
 
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
       cancelScheduledFetch();
+      setData({ results: [], query: { slug: '', ...data.query } });
       const { slug, type } = data.query;
       dispatch(search({
         slug, type, perPage: 50, page: null,
       }));
-      setData({ results: [], query: { slug: '', ...data.query } });
     }
   };
 
@@ -37,10 +37,10 @@ const SearchBar = () => {
           placeholder="search any release"
           value={data.query.slug}
           onChange={(event) => {
-            setData({
-              ...data,
+            setData((prevData) => ({
+              ...prevData,
               query: { ...data.query, slug: event.target.value },
-            });
+            }));
           }}
           onKeyPress={handleKeyPress}
         />
@@ -52,11 +52,9 @@ const SearchBar = () => {
       </div>
       {(data.results.length > 0) && (
       <div className={styles.searchResultsWrapper}>
-        <ul className={styles.searchResults}>
-          {
-          data.results.map((r) => <SearchResultItem key={r.id} result={r} />)
-        }
-        </ul>
+        <div className={styles.searchResults}>
+          <SearchResults results={data.results} context="searchBar" />
+        </div>
       </div>
       )}
     </div>

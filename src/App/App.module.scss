@@ -1,6 +1,6 @@
 @import './../styles/abstracts/variables';
 
-.nav {
+.bottomNav {
   height: 7rem;
   position: fixed;
   bottom: 0;
@@ -15,4 +15,8 @@
 .linkIcon {
   color: $primary-color;
   font-size: 4rem;
+}
+
+.noMatch {
+  padding: 1rem;
 }

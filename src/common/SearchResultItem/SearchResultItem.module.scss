@@ -4,8 +4,12 @@
   display: grid;
   height: 4rem;
   margin-bottom: 1rem;
-  grid-template-columns: auto 5fr 1fr 1fr;
+  grid-template-columns: auto 5fr 1fr;
   width: 100%;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .thumb {
@@ -21,6 +25,11 @@
   height: 4rem;
   grid-template-rows: 1fr 2fr;
   row-gap: 0.4rem;
+  text-align: left;
+
+  &:hover {
+    color: $primary-color;
+  }
 }
 
 .resultTitle,
@@ -33,4 +42,20 @@
 
 .resultType {
   font-size: 1rem;
+}
+
+.colorA {
+  color: inherit;
+
+  &:hover {
+    color: inherit;
+  }
+}
+
+.colorB {
+  color: $primary-color;
+
+  &:hover {
+    color: $primary-color-hover;
+  }
 }

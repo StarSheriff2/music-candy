@@ -19,14 +19,12 @@ const Artist = () => {
 
   const [artistReleases, setArtistReleases] = useState(undefined);
 
-  useEffect(async () => {
+  const fetchArtistData = async (page) => {
     try {
-      const responseArtistI = await discogsApiService.getArtistInfo(params.artistId, null);
+      const responseArtistI = await discogsApiService.getArtistInfo(params.artistId);
       setArtistInfo(responseArtistI.data);
-      const responseArtistR = await discogsApiService.getArtistReleases(params.artistId, null);
-      const { releases, pagination } = responseArtistR.data;
-      const releasesPayload = releases.filter((r) => r.type === 'release');
-      setArtistReleases({ releases: releasesPayload, pagination });
+      const responseArtistR = await discogsApiService.getArtistReleases(params.artistId, page);
+      setArtistReleases(responseArtistR.data);
     } catch (error) {
       const message = (error.response
         && error.response.data
@@ -35,6 +33,10 @@ const Artist = () => {
       || error.toString();
       dispatch(setMessage({ message, type: 'danger' }));
     }
+  }
+
+  useEffect(() => {
+    fetchArtistData();
 
     return () => {
       setArtistInfo(undefined);
@@ -78,10 +80,15 @@ const Artist = () => {
             (<>
               <h3 className="my-4 text-center">Releases: </h3>
               {artistReleases.releases.map((r) => (
-                <SearchResultItem key={r.id} result={r} context="artistPage" />
+                <SearchResultItem key={r.id} result={{ ...r, year: r.year.toString() }} context="artistPage" />
               ))}
               <hr />
-              <PaginationButtons pagination={artistReleases.pagination} paginationOrigin="artist" />
+              <PaginationButtons
+                pagination={artistReleases.pagination}
+                paginationOrigin="artist"
+                fetchArtistData={fetchArtistData}
+                displayedItems={artistReleases.releases.length}
+              />
             </>)}
           </div>
         </>

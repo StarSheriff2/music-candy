@@ -7,7 +7,7 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
 import { search } from '../../slices/discogsSearch';
 import styles from './PaginationButtons.module.scss';
 
-const PaginationButtons = ({ pagination, paginationOrigin }) => {
+const PaginationButtons = ({ pagination, paginationOrigin, fetchArtistData }) => {
   const dispatch = useDispatch();
 
   const {
@@ -36,9 +36,7 @@ const PaginationButtons = ({ pagination, paginationOrigin }) => {
         slug: params[0], type: params[1], page: goToPage,
       }));
     } else {
-      dispatch(search({
-        slug: params[0], type: params[1], page: goToPage,
-      }));
+      fetchArtistData(goToPage);
     }
   };
 
@@ -79,6 +77,8 @@ PaginationButtons.propTypes = {
   pagination: PropTypes.shape(
     null,
   ).isRequired,
+  paginationOrigin: PropTypes.string.isRequired,
+
 };
 
 export default PaginationButtons;

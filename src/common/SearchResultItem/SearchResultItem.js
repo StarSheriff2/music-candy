@@ -33,7 +33,7 @@ const SearchResultItem = ({ result, context }) => {
           <span>{result.year && `(${result.year})`}</span>
         </p>
       </div>
-      {(result.type === 'release') ? <AddReleaseButton releaseId={result.id} /> : <div /> }
+      {(result.type === 'release') && (<AddReleaseButton releaseId={result.id} />)}
       <DrillButton type={result.type} id={result.id} context={context} />
     </li>
   );

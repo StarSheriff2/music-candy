@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 // import AddReleaseButton from '../AddReleaseButton/AddReleaseButton';
 
 // import SearchResultItem from '../../common/SearchResultItem/SearchResultItem';
-// import styles from './SearchResults.module.scss';
+// import styles from './ReleaseVersion.module.scss';
 
 const ReleaseVersion = ({ release, show, setShowRelease }) => {
   const handleClose = () => setShowRelease(false);

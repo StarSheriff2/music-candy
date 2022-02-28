@@ -5,7 +5,7 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { search } from '../../slices/discogsSearch';
 import useFetchResults from '../../hooks/fetchResults';
 import styles from './SearchBar.module.scss';
-import SearchResultItem from '../../common/SearchResultItem/SearchResultItem';
+import SearchResults from '../SearchResults/SearchResults';
 
 const SearchBar = () => {
   const { data, setData, cancelScheduledFetch } = useFetchResults();
@@ -52,11 +52,9 @@ const SearchBar = () => {
       </div>
       {(data.results.length > 0) && (
       <div className={styles.searchResultsWrapper}>
-        <ul className={styles.searchResults}>
-          {
-          data.results.map((r) => <SearchResultItem key={r.id} result={r} context="searchBar" />)
-        }
-        </ul>
+        <div className={styles.searchResults}>
+          <SearchResults results={data.results} />
+        </div>
       </div>
       )}
     </div>

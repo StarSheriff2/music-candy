@@ -51,11 +51,13 @@ const Artist = () => {
         {(artistInfo) && (
         <>
           <div className={`d-flex flex-column justify-content-start ${styles.artistInfoWrapper}`}>
+            {('images' in artistInfo) && (
             <img
               src={artistInfo.images[0].resource_url}
               alt="artist"
               className={styles.artistImage}
             />
+            )}
             <h2 className={styles.title}>{artistInfo.name}</h2>
             <h3 className="mb-4">Bio: </h3>
             <p className={styles.description}>{artistInfo.profile}</p>

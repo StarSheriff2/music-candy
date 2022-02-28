@@ -1,0 +1,9 @@
+@import '../../styles/abstracts/variables';
+
+.link {
+  color: inherit;
+
+  &:hover {
+    color: $primary-color;
+  }
+}

@@ -25,7 +25,7 @@ const SearchResultItem = ({ result, context }) => {
 
   return (
     <>
-      <li className={styles.resultItem} onClick={handleClick}>
+      <div className={styles.resultItem} onClick={handleClick} role="button" onKeyPress={handleClick} tabIndex={0}>
         <img
           src={(result.thumb === '') ? albumNoArt : result.thumb}
           alt="search result thumbnail"
@@ -50,7 +50,7 @@ const SearchResultItem = ({ result, context }) => {
               <FontAwesomeIcon icon={faChevronRight} className={(context === 'searchBar') ? styles.colorB : styles.colorA} />
             </div>
           )}
-      </li>
+      </div>
       <ReleaseVersion show={showRelease} setShowRelease={setShowRelease} />
     </>
   );

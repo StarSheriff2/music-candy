@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Spinner from 'react-bootstrap/Spinner';
 import discogsApiService from '../../services/discogs.service';
-import { setMessage, clearMessage } from '../../slices/message';
+import Message from '../../common/Message/Message';
+import { setMessage, clearMessage, messageState } from '../../slices/message';
 import SearchResultItem from '../../common/SearchResultItem/SearchResultItem';
 import PaginationButtons from '../../common/PaginationButtons/PaginationButtons';
 import PageHeader from '../../components/PageHeader/PageHeader';
@@ -17,6 +18,8 @@ const Artist = () => {
   const [artistInfo, setArtistInfo] = useState(undefined);
 
   const [artistReleases, setArtistReleases] = useState(undefined);
+
+  const { message, type } = useSelector(messageState);
 
   const fetchArtistData = async (page) => {
     try {
@@ -98,6 +101,9 @@ const Artist = () => {
               )}
           </div>
         </>
+        )}
+        {!(message === '') && (
+          <Message message={message} type={type} />
         )}
       </div>
     </>

@@ -32,7 +32,10 @@ const AddReleaseButton = ({ releaseId }) => {
     };
   }, [isLoading]);
 
-  const handleClick = () => setLoading(true);
+  const handleClick = (e) => {
+    e.stopPropagation();
+    setLoading(true);
+  };
 
   return (
     <div className="d-flex">

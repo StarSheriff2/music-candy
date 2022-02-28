@@ -6,7 +6,7 @@ import SearchResultItem from '../../common/SearchResultItem/SearchResultItem';
 import PaginationButtons from '../../common/PaginationButtons/PaginationButtons';
 import styles from './SearchResults.module.scss';
 
-const SearchResults = ({ results, pagination }) => (
+const SearchResults = ({ results, pagination, context }) => (
   <div className="text-start">
     {results.map((r) => {
       if (r.type !== 'release') {
@@ -16,11 +16,11 @@ const SearchResults = ({ results, pagination }) => (
             to={`/${r.type}s/${r.id}`}
             key={r.id}
           >
-            <SearchResultItem result={r} context="searchResults" />
+            <SearchResultItem result={r} context={context} />
           </Link>
         );
       }
-      return (<SearchResultItem key={r.id} result={r} context="searchResults" />);
+      return (<SearchResultItem key={r.id} result={r} context={context} />);
     })}
     {pagination && (
       <>
@@ -32,6 +32,10 @@ const SearchResults = ({ results, pagination }) => (
   </div>
 );
 
+SearchResults.defaultProps = {
+  pagination: null,
+};
+
 SearchResults.propTypes = {
   results: PropTypes.arrayOf(PropTypes.shape({
     Object,
@@ -39,6 +43,7 @@ SearchResults.propTypes = {
   pagination: PropTypes.shape(
     null,
   ),
+  context: PropTypes.string.isRequired,
 };
 
 export default SearchResults;

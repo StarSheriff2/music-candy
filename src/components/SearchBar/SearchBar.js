@@ -53,7 +53,7 @@ const SearchBar = () => {
       {(data.results.length > 0) && (
       <div className={styles.searchResultsWrapper}>
         <div className={styles.searchResults}>
-          <SearchResults results={data.results} />
+          <SearchResults results={data.results} context="searchBar" />
         </div>
       </div>
       )}

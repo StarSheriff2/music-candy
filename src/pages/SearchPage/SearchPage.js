@@ -31,6 +31,7 @@ const SearchPage = ({ setSort }) => {
         <SearchResults
           results={results}
           pagination={pagination}
+          context="searchResults"
         />
       </ul>
     );

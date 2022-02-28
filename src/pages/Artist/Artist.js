@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import Spinner from 'react-bootstrap/Spinner';
 import discogsApiService from '../../services/discogs.service';
 import { setMessage, clearMessage } from '../../slices/message';
 import SearchResultItem from '../../common/SearchResultItem/SearchResultItem';
 import PaginationButtons from '../../common/PaginationButtons/PaginationButtons';
-import Spinner from 'react-bootstrap/Spinner';
 import styles from './Artist.module.scss';
 
 const Artist = () => {
@@ -77,24 +77,25 @@ const Artist = () => {
           </div>
           <div>
             {(artistReleases) ? (
-            <>
-              <h3 className="my-4 text-center">Releases: </h3>
-              {artistReleases.releases.map((r) => (
-                <SearchResultItem key={r.id} result={{ ...r, year: r.year.toString() }} context="artistPage" />
-              ))}
-              <hr />
-              <PaginationButtons
-                pagination={artistReleases.pagination}
-                paginationOrigin="artist"
-                fetchArtistData={fetchArtistData}
-                displayedItems={artistReleases.releases.length}
-              />
-            </>
-            ) :
-            <Spinner animation="border" role="status" className="my-4" >
-              <span className="visually-hidden">Loading...</span>
-            </Spinner>
-            }
+              <>
+                <h3 className="my-4 text-center">Releases: </h3>
+                {artistReleases.releases.map((r) => (
+                  <SearchResultItem key={r.id} result={{ ...r, year: r.year.toString() }} context="artistPage" />
+                ))}
+                <hr />
+                <PaginationButtons
+                  pagination={artistReleases.pagination}
+                  paginationOrigin="artist"
+                  fetchArtistData={fetchArtistData}
+                  displayedItems={artistReleases.releases.length}
+                />
+              </>
+            )
+              : (
+                <Spinner animation="border" role="status" className="my-4">
+                  <span className="visually-hidden">Loading...</span>
+                </Spinner>
+              )}
           </div>
         </>
         )}

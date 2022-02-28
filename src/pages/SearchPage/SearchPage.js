@@ -1,5 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import Message from '../../common/Message/Message';
 import styles from './SearchPage.module.scss';
 import SearchBar from '../../components/SearchBar/SearchBar';
@@ -22,10 +23,10 @@ const SearchPage = ({ setSort }) => {
         {status === 'fulfilled'
           && (
           <ul>
-              <SearchResults
-                results={results}
-                pagination={pagination}
-              />
+            <SearchResults
+              results={results}
+              pagination={pagination}
+            />
           </ul>
           )}
       </div>
@@ -40,6 +41,10 @@ const SearchPage = ({ setSort }) => {
       )}
     </div>
   );
+};
+
+SearchPage.propTypes = {
+  setSort: PropTypes.func.isRequired,
 };
 
 export default SearchPage;

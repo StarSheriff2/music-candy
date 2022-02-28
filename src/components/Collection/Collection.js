@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { get, discogsCollectionState } from '../../slices/discogsCollection';
@@ -9,9 +9,8 @@ import albumNoArt from '../../common/no-album-art.jpeg';
 
 const Collection = ({ setSort }) => {
   const sort = useContext(SearchPageCollectionSorting);
+  const previousSortValue = useRef(sort);
   const dispatch = useDispatch();
-
-  console.log('sort in Collection: ', sort)
 
   const {
     status: collectionStatus, collection, pagination,
@@ -24,7 +23,10 @@ const Collection = ({ setSort }) => {
   }, []);
 
   useEffect(() => {
-    if (collectionStatus === 'fulfilled') dispatch(get(sort));
+    if (sort !== previousSortValue.current) {
+      previousSortValue.current = sort;
+      dispatch(get(sort));
+    }
   }, [sort]);
 
   const handleSelect = (event) => {

@@ -77,7 +77,7 @@ const Artist = () => {
               <>
                 <h3 className="my-4 text-center">Releases: </h3>
                 {artistReleases.releases.map((r) => (
-                  <SearchResultItem key={r.id} result={{ ...r, year: r.year.toString() }} context="artistPage" />
+                  <SearchResultItem key={r.id} result={{ ...r, year: (('year' in r) ? r.year.toString() : '') }} context="artistPage" />
                 ))}
                 <hr />
                 <PaginationButtons

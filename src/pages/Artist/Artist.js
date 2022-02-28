@@ -3,6 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import discogsApiService from '../../services/discogs.service';
 import { setMessage, clearMessage } from '../../slices/message';
+import SearchResultItem from '../../common/SearchResultItem/SearchResultItem';
+import PaginationButtons from '../../common/PaginationButtons/PaginationButtons';
 import styles from './Artist.module.scss';
 // import PropTypes from 'prop-types';
 
@@ -24,7 +26,7 @@ const Artist = () => {
       const responseArtistR = await discogsApiService.getArtistReleases(params.artistId, null);
       const { releases, pagination } = responseArtistR.data;
       const releasesPayload = releases.filter((r) => r.type === 'release');
-      setArtistReleases({ releases: releasesPayload, pagination});
+      setArtistReleases({ releases: releasesPayload, pagination });
     } catch (error) {
       const message = (error.response
         && error.response.data
@@ -72,10 +74,15 @@ const Artist = () => {
               ) : null}
           </div>
           <div>
-            <h3 className="my-4 text-center">Releases: </h3>
-            {artistReleases && artistReleases.releases.map((r) => (
-              <p key={r.id}>{r.title}</p>
-            ))}
+            {(artistReleases) &&
+            (<>
+              <h3 className="my-4 text-center">Releases: </h3>
+              {artistReleases.releases.map((r) => (
+                <SearchResultItem key={r.id} result={r} context="artistPage" />
+              ))}
+              <hr />
+              <PaginationButtons pagination={artistReleases.pagination} paginationOrigin="artist" />
+            </>)}
           </div>
         </>
         )}

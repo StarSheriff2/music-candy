@@ -54,7 +54,7 @@ const SearchBar = () => {
       <div className={styles.searchResultsWrapper}>
         <ul className={styles.searchResults}>
           {
-          data.results.map((r) => <SearchResultItem key={r.id} result={r} context={'searchBar'}/>)
+          data.results.map((r) => <SearchResultItem key={r.id} result={r} context="searchBar" />)
         }
         </ul>
       </div>

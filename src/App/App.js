@@ -26,7 +26,7 @@ const App = () => (
         path="*"
         element={(
           <main className={styles.noMatch}>
-            <p>There's nothing here</p>
+            <p>There&apos;s nothing here</p>
           </main>
       )}
       />

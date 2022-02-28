@@ -33,7 +33,14 @@ const Collection = ({ sort, setSort }) => {
       <div className="d-flex justify-content-between">
         <h2 className={styles.title}>
           My Collection
-          {pagination.items && (<span> ({pagination.items})</span>)}
+          {pagination.items && (
+          <span>
+            {' '}
+            (
+            {pagination.items}
+            )
+          </span>
+          )}
         </h2>
         <label htmlFor="sort">
           Sort by

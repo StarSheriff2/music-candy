@@ -30,9 +30,16 @@ const PaginationButtons = ({ pagination, paginationOrigin }) => {
     let params = new URLSearchParams(urls[pagBtn]);
 
     params = Object.values(Object.fromEntries(params.entries()));
-    dispatch(search({
-      slug: params[0], type: params[1], page: goToPage,
-    }));
+
+    if (paginationOrigin === 'search') {
+      dispatch(search({
+        slug: params[0], type: params[1], page: goToPage,
+      }));
+    } else {
+      dispatch(search({
+        slug: params[0], type: params[1], page: goToPage,
+      }));
+    }
   };
 
   return (

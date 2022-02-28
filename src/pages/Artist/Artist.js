@@ -6,7 +6,6 @@ import { setMessage, clearMessage } from '../../slices/message';
 import SearchResultItem from '../../common/SearchResultItem/SearchResultItem';
 import PaginationButtons from '../../common/PaginationButtons/PaginationButtons';
 import styles from './Artist.module.scss';
-// import PropTypes from 'prop-types';
 
 const Artist = () => {
   const params = useParams();
@@ -33,7 +32,7 @@ const Artist = () => {
       || error.toString();
       dispatch(setMessage({ message, type: 'danger' }));
     }
-  }
+  };
 
   useEffect(() => {
     fetchArtistData();
@@ -56,7 +55,7 @@ const Artist = () => {
           <div className={`d-flex flex-column justify-content-start ${styles.artistInfoWrapper}`}>
             <img
               src={artistInfo.images[0].resource_url}
-              alt="artist image"
+              alt="artist"
               className={styles.artistImage}
             />
             <h2 className={styles.title}>{artistInfo.name}</h2>
@@ -76,8 +75,9 @@ const Artist = () => {
               ) : null}
           </div>
           <div>
-            {(artistReleases) &&
-            (<>
+            {(artistReleases)
+            && (
+            <>
               <h3 className="my-4 text-center">Releases: </h3>
               {artistReleases.releases.map((r) => (
                 <SearchResultItem key={r.id} result={{ ...r, year: r.year.toString() }} context="artistPage" />
@@ -89,7 +89,8 @@ const Artist = () => {
                 fetchArtistData={fetchArtistData}
                 displayedItems={artistReleases.releases.length}
               />
-            </>)}
+            </>
+            )}
           </div>
         </>
         )}
@@ -97,9 +98,5 @@ const Artist = () => {
     </>
   );
 };
-
-// Artist.propTypes = {
-
-// }
 
 export default Artist;

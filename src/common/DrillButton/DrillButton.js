@@ -7,16 +7,16 @@ import styles from './DrillButton.module.scss';
 
 const DrillButton = ({ type, id, context }) => (
   (type === 'artist')
-  ? (
-    <Link
-      className="d-flex"
-      to={`/${type}s/${id}`}
-    >
-      <FontAwesomeIcon icon={faChevronRight} className={(context === 'searchBar') ? styles.colorB : styles.colorA} />
-    </Link>
-  ) : (
-    null
-  )
+    ? (
+      <Link
+        className="d-flex"
+        to={`/${type}s/${id}`}
+      >
+        <FontAwesomeIcon icon={faChevronRight} className={(context === 'searchBar') ? styles.colorB : styles.colorA} />
+      </Link>
+    ) : (
+      null
+    )
 );
 
 DrillButton.propTypes = {

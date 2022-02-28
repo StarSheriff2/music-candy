@@ -73,12 +73,16 @@ const PaginationButtons = ({ pagination, paginationOrigin, fetchArtistData }) =>
   );
 };
 
+PaginationButtons.defaultProps = {
+  fetchArtistData: null,
+};
+
 PaginationButtons.propTypes = {
   pagination: PropTypes.shape(
     null,
   ).isRequired,
   paginationOrigin: PropTypes.string.isRequired,
-
+  fetchArtistData: PropTypes.func,
 };
 
 export default PaginationButtons;

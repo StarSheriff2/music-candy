@@ -1,8 +1,8 @@
 /* eslint-disable camelcase */
-import React, { useState } from 'react';
+import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import PropTypes from 'prop-types';
-import AddReleaseButton from '../AddReleaseButton/AddReleaseButton';
+// import AddReleaseButton from '../AddReleaseButton/AddReleaseButton';
 
 // import SearchResultItem from '../../common/SearchResultItem/SearchResultItem';
 // import styles from './SearchResults.module.scss';
@@ -14,7 +14,7 @@ const ReleaseVersion = ({ release, show, setShowRelease }) => {
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
         <Modal.Title>
-          Release Title
+          {release.title}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -28,13 +28,12 @@ const ReleaseVersion = ({ release, show, setShowRelease }) => {
   );
 };
 
-// SearchResults.propTypes = {
-//   results: PropTypes.arrayOf(PropTypes.shape({
-//     Object,
-//   })).isRequired,
-//   pagination: PropTypes.shape(
-//     null,
-//   ).isRequired,
-// };
+ReleaseVersion.propTypes = {
+  show: PropTypes.bool.isRequired,
+  release: PropTypes.shape(
+    null,
+  ).isRequired,
+  setShowRelease: PropTypes.func.isRequired,
+};
 
 export default ReleaseVersion;

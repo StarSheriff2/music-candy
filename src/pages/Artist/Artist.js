@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Spinner from 'react-bootstrap/Spinner';
 import discogsApiService from '../../services/discogs.service';
 import { setMessage, clearMessage } from '../../slices/message';
 import SearchResultItem from '../../common/SearchResultItem/SearchResultItem';
 import PaginationButtons from '../../common/PaginationButtons/PaginationButtons';
+import PageHeader from '../../components/PageHeader/PageHeader';
 import styles from './Artist.module.scss';
 
 const Artist = () => {
   const params = useParams();
-
-  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -47,10 +46,8 @@ const Artist = () => {
 
   return (
     <>
-      <div>
-        <button type="button" onClick={() => navigate('/')}>go back</button>
-      </div>
-      <div className={`d-flex border-danger flex-column justify-content-start border ${styles.page}`}>
+      <PageHeader />
+      <div className={`d-flex flex-column justify-content-start ${styles.page}`}>
         {(artistInfo) && (
         <>
           <div className={`d-flex flex-column justify-content-start ${styles.artistInfoWrapper}`}>

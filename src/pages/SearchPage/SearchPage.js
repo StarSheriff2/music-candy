@@ -8,6 +8,7 @@ import SearchBar from '../../components/SearchBar/SearchBar';
 import { discogsSearchState } from '../../slices/discogsSearch';
 import SearchResults from '../../components/SearchResults/SearchResults';
 import Collection from '../../components/Collection/Collection';
+import PageHeader from '../../components/PageHeader/PageHeader';
 import { messageState } from '../../slices/message';
 
 const SearchPage = ({ setSort }) => {
@@ -36,24 +37,23 @@ const SearchPage = ({ setSort }) => {
   }
 
   return (
-    <div className={styles.searchPage}>
-      <h1>Music Candy</h1>
-
-      <SearchBar />
-
-      <div className={styles.resultsSection}>
-        {searchResultsContent}
+    <>
+      <PageHeader />
+      <div className={styles.searchPage}>
+        <SearchBar />
+        <div className={styles.resultsSection}>
+          {searchResultsContent}
+        </div>
+        <div className={styles.collectionSection}>
+          <Collection
+            setSort={setSort}
+          />
+        </div>
+        {!(message === '') && (
+          <Message message={message} type={type} />
+        )}
       </div>
-      <div className={styles.collectionSection}>
-        <Collection
-          setSort={setSort}
-        />
-      </div>
-
-      {!(message === '') && (
-        <Message message={message} type={type} />
-      )}
-    </div>
+    </>
   );
 };
 

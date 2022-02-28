@@ -1,0 +1,12 @@
+@import '../../styles/abstracts/variables';
+
+.pageHeader {
+  height: 2.5rem;
+}
+
+.pageHeader button {
+  position: absolute;
+  left: 0;
+  background-color: transparent;
+  color: $primary-color;
+}

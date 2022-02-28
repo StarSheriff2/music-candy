@@ -20,7 +20,7 @@ const App = () => {
         <Route
           path="/"
           element={(
-            <div className="border border-danger">
+            <div>
               <SearchPageCollectionSorting.Provider value={sort}>
                 <SearchPage setSort={setSort} />
               </SearchPageCollectionSorting.Provider>
@@ -39,7 +39,7 @@ const App = () => {
         />
       </Routes>
       <nav
-        className={`d-flex ${styles.nav}`}
+        className={`d-flex ${styles.bottomNav}`}
       >
         <Link to="/" className={`d-flex ${styles.link}`}>
           <FontAwesomeIcon icon={faSearch} className={styles.linkIcon} />

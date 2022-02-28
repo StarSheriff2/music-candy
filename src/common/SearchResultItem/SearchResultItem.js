@@ -5,7 +5,7 @@ import DrillButton from '../DrillButton/DrillButton';
 import styles from './SearchResultItem.module.scss';
 import albumNoArt from '../no-album-art.jpeg';
 
-const SearchResultItem = ({ result }) => {
+const SearchResultItem = ({ result, context }) => {
   let resultType;
   if (result.type === 'artist') {
     resultType = 'Artist';
@@ -34,7 +34,7 @@ const SearchResultItem = ({ result }) => {
         </p>
       </div>
       {(result.type === 'release') ? <AddReleaseButton releaseId={result.id} /> : <div /> }
-      <DrillButton type={result.type} id={result.id} />
+      <DrillButton type={result.type} id={result.id} context={context} />
     </li>
   );
 };
@@ -48,6 +48,7 @@ SearchResultItem.propTypes = {
     year: PropTypes.string,
     id: PropTypes.number.isRequired,
   }).isRequired,
+  context: PropTypes.string.isRequired,
 };
 
 export default SearchResultItem;

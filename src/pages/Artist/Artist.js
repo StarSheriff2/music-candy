@@ -55,7 +55,7 @@ const Artist = () => {
               alt="artist image"
               className={styles.artistImage}
             />
-            <h2 className={styles.title}>{artistInfo.namevariations[0]}</h2>
+            <h2 className={styles.title}>{artistInfo.name}</h2>
             <h3 className="mb-4">Bio: </h3>
             <p className={styles.description}>{artistInfo.profile}</p>
 

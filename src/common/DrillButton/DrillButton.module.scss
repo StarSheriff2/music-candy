@@ -1,9 +1,17 @@
 @import '../../styles/abstracts/variables';
 
-.icon {
+.colorA {
   color: $complementary-color;
 
   &:hover {
     color: $complementary-color-hover
+  }
+}
+
+.colorB {
+  color: $primary-color;
+
+  &:hover {
+    color: $primary-color-hover
   }
 }

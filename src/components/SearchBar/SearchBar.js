@@ -13,7 +13,7 @@ const SearchBar = () => {
   const dispatch = useDispatch();
 
   const handleSelect = (event) => {
-    setData({ ...data, query: { ...data.query, type: event.target.value } });
+    setData((prevData) => ({ ...prevData, query: { ...data.query, type: event.target.value } }));
   };
 
   const handleKeyPress = (event) => {
@@ -37,10 +37,10 @@ const SearchBar = () => {
           placeholder="search any release"
           value={data.query.slug}
           onChange={(event) => {
-            setData({
-              ...data,
+            setData((prevData) => ({
+              ...prevData,
               query: { ...data.query, slug: event.target.value },
-            });
+            }));
           }}
           onKeyPress={handleKeyPress}
         />
@@ -54,7 +54,7 @@ const SearchBar = () => {
       <div className={styles.searchResultsWrapper}>
         <ul className={styles.searchResults}>
           {
-          data.results.map((r) => <SearchResultItem key={r.id} result={r} />)
+          data.results.map((r) => <SearchResultItem key={r.id} result={r} context={'searchBar'}/>)
         }
         </ul>
       </div>

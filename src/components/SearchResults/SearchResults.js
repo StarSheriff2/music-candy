@@ -8,7 +8,7 @@ const SearchResults = ({ results, pagination }) => {
 
   return (
     <>
-      {results.map((r) => <SearchResultItem key={r.id} result={r} />)}
+      {results.map((r) => <SearchResultItem key={r.id} result={r} context={'searchResults'} />)}
       <hr />
       <PaginationButtons pagination={pagination} paginationOrigin={'search'} ></PaginationButtons>
     </>

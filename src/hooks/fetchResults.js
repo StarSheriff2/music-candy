@@ -25,7 +25,7 @@ const useFetchResults = () => {
         const fetch = async () => {
           try {
             const res = await discogsApiService.search(data.query);
-            setData({ ...data, results: res.data.results });
+            setData((prevData) => ({ ...prevData, results: res.data.results }));
           } catch (error) {
             const message = (error.response
               && error.response.data

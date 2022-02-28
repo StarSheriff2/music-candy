@@ -6,11 +6,11 @@ import { faAdd } from '@fortawesome/free-solid-svg-icons';
 import Spinner from 'react-bootstrap/Spinner';
 import { addRelease, discogsCollectionState } from '../../slices/discogsCollection';
 import { clearMessage } from '../../slices/message';
-import SearchPageSortingContext from '../../Context';
+import SearchPageCollectionSorting from '../../Context';
 import styles from './AddReleaseButton.module.scss';
 
 const AddReleaseButton = ({ releaseId }) => {
-  const sort = useContext(SearchPageSortingContext);
+  const sort = useContext(SearchPageCollectionSorting);
   const dispatch = useDispatch();
 
   const { addReleaseStatus } = useSelector(discogsCollectionState);

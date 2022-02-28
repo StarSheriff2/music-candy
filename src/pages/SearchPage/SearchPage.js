@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useSelector } from 'react-redux';
 import Message from '../../common/Message/Message';
 import styles from './SearchPage.module.scss';
@@ -6,14 +6,11 @@ import SearchBar from '../../components/SearchBar/SearchBar';
 import { discogsSearchState } from '../../slices/discogsSearch';
 import SearchResults from '../../components/SearchResults/SearchResults';
 import Collection from '../../components/Collection/Collection';
-import SearchPageSortingContext from '../../Context';
-
 import { messageState } from '../../slices/message';
 
-const SearchPage = () => {
+const SearchPage = ({ setSort }) => {
   const { message, type } = useSelector(messageState);
   const { results, status, pagination } = useSelector(discogsSearchState);
-  const [sort, setSort] = useState('artist');
 
   return (
     <div className={styles.searchPage}>
@@ -25,18 +22,15 @@ const SearchPage = () => {
         {status === 'fulfilled'
           && (
           <ul>
-            <SearchPageSortingContext.Provider value={sort}>
               <SearchResults
                 results={results}
                 pagination={pagination}
               />
-            </SearchPageSortingContext.Provider>
           </ul>
           )}
       </div>
       <div className={styles.collectionSection}>
         <Collection
-          sort={sort}
           setSort={setSort}
         />
       </div>

@@ -1,13 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { get, discogsCollectionState } from '../../slices/discogsCollection';
 import { clearMessage } from '../../slices/message';
 import styles from './Collection.module.scss';
+import SearchPageCollectionSorting from '../../Context';
 import albumNoArt from '../../common/no-album-art.jpeg';
 
-const Collection = ({ sort, setSort }) => {
+const Collection = ({ setSort }) => {
+  const sort = useContext(SearchPageCollectionSorting);
   const dispatch = useDispatch();
+
+  console.log('sort in Collection: ', sort)
 
   const {
     status: collectionStatus, collection, pagination,
@@ -44,7 +48,7 @@ const Collection = ({ sort, setSort }) => {
         </h2>
         <label htmlFor="sort">
           Sort by
-          <select id="sort" name="sort" onChange={handleSelect} className={styles.sortDd}>
+          <select id="sort" name="sort" onChange={handleSelect} value={sort} className={styles.sortDd}>
             <option value="artist">Artist</option>
             <option value="title">Release Title</option>
           </select>
@@ -75,7 +79,6 @@ const Collection = ({ sort, setSort }) => {
 };
 
 Collection.propTypes = {
-  sort: PropTypes.string.isRequired,
   setSort: PropTypes.func.isRequired,
 };
 

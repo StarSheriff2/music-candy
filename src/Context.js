@@ -1,5 +1,5 @@
 import { createContext } from 'react';
 
-const SearchPageSortingContext = createContext('artist');
+const SearchPageCollectionSorting = createContext('artist');
 
-export default SearchPageSortingContext;
+export default SearchPageCollectionSorting;

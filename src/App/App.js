@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import {
   BrowserRouter, Link, Routes, Route, Outlet,
 } from 'react-router-dom';
@@ -7,16 +7,23 @@ import { faSearch, faRecordVinyl } from '@fortawesome/free-solid-svg-icons';
 import SearchPage from '../pages/SearchPage/SearchPage';
 import Collection from '../pages/Collection/Collection';
 import Artist from '../pages/Artist/Artist';
+import SearchPageCollectionSorting from '../Context';
 import styles from './App.module.scss';
 
-const App = () => (
+const App = () => {
+  const sortType = useContext(SearchPageCollectionSorting);
+  const [sort, setSort] = useState(sortType);
+
+  return (
   <BrowserRouter>
     <Routes>
       <Route
         path="/"
         element={(
           <div className="border border-danger">
-            <SearchPage />
+            <SearchPageCollectionSorting.Provider value={sort}>
+              <SearchPage setSort={setSort} />
+            </SearchPageCollectionSorting.Provider>
           </div>
         )}
       />
@@ -46,6 +53,6 @@ const App = () => (
     </nav>
     <Outlet />
   </BrowserRouter>
-);
+)};
 
 export default App;

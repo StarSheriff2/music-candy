@@ -5,11 +5,12 @@ import SearchResultItem from '../../common/SearchResultItem/SearchResultItem';
 import PaginationButtons from '../../common/PaginationButtons/PaginationButtons';
 
 const SearchResults = ({ results, pagination }) => (
-  <>
+  <div className="text-start">
     {results.map((r) => <SearchResultItem key={r.id} result={r} context="searchResults" />)}
     <hr />
     <PaginationButtons pagination={pagination} paginationOrigin="search" />
-  </>
+    <hr />
+  </div>
 );
 
 SearchResults.propTypes = {

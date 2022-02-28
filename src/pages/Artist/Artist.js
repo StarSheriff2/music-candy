@@ -86,6 +86,7 @@ const Artist = () => {
                   fetchArtistData={fetchArtistData}
                   displayedItems={artistReleases.releases.length}
                 />
+                <hr />
               </>
             )
               : (

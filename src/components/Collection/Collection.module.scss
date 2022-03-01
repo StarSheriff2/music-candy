@@ -1,3 +1,9 @@
+@import '../../styles/abstracts/variables';
+
+.container {
+  border-top: $light-bg 1px solid;
+}
+
 .sortDd {
   font-size: 1.4rem;
   letter-spacing: 0.1rem;
@@ -9,6 +15,18 @@
   background-repeat: no-repeat;
   background-position-x: 100%;
   background-position-y: 50%;
+  border: none;
+}
+
+.collectionListWrapper {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 .releaseCard {

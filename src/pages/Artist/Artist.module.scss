@@ -1,9 +1,9 @@
 @import '../../styles/abstracts/variables';
 
 .page {
-  height: calc(100vh - 9.5rem);
-  padding: 2rem;
+  height: calc(100vh - 10.5rem);
   overflow: scroll;
+  padding: 0 2rem 2rem;
 }
 
 .title {
@@ -22,4 +22,12 @@
   overflow: scroll;
   max-height: 30vh;
   margin-bottom: 2rem;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }

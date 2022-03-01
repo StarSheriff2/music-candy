@@ -36,7 +36,7 @@ const Collection = ({ setSort }) => {
 
   return (
     <>
-      <div className="d-flex justify-content-between">
+      <div className={`d-flex justify-content-between pt-3 ${styles.container}`}>
         <h2 className={styles.title}>
           My Collection
           {pagination.items && (
@@ -56,7 +56,7 @@ const Collection = ({ setSort }) => {
           </select>
         </label>
       </div>
-      <div className="d-flex overflow-scroll justify-content-between">
+      <div className={`d-flex overflow-scroll justify-content-between ${styles.collectionListWrapper}`}>
         {collection.map((c) => {
           const { basic_information: release } = c;
           return (

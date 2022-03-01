@@ -43,9 +43,9 @@ const ReleaseVersion = ({ releaseId, show, setShowRelease }) => {
       contentClassName={styles.modal}
       onEnter={loadData}
     >
-      <Modal.Header closeButton>
-        <Modal.Title>
-          {releaseData && <h2 className="fs-1">{releaseData.title}</h2>}
+      <Modal.Header closeButton bsPrefix={styles.header}>
+        <Modal.Title className={styles.title}>
+          {releaseData && <h2 className={`fs-1 ${styles.title}`}>{releaseData.title}</h2>}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>

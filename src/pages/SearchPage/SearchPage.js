@@ -38,7 +38,7 @@ const SearchPage = ({ setSort }) => {
   }
 
   return (
-    <>
+    <div>
       <PageHeader />
       <div className={styles.searchPage}>
         <SearchBar />
@@ -54,7 +54,7 @@ const SearchPage = ({ setSort }) => {
           <Message message={message} type={type} />
         )}
       </div>
-    </>
+    </div>
   );
 };
 

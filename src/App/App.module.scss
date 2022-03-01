@@ -6,6 +6,7 @@
   bottom: 0;
   width: 100%;
   color: $primary-color;
+  border-top: $light-bg 1px solid;
 }
 
 .link {
@@ -15,6 +16,10 @@
 .linkIcon {
   color: $primary-color;
   font-size: 4rem;
+
+  &:hover {
+    color: $light-bg;
+  }
 }
 
 .noMatch {

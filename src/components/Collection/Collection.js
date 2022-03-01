@@ -56,7 +56,7 @@ const Collection = ({ setSort }) => {
           </select>
         </label>
       </div>
-      <div className="d-flex overflow-scroll justify-content-between">
+      <div className={`d-flex overflow-scroll justify-content-between ${styles.collectionListWrapper}`}>
         {collection.map((c) => {
           const { basic_information: release } = c;
           return (

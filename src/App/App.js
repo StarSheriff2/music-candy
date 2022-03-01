@@ -20,12 +20,10 @@ const App = () => {
         <Route
           path="/"
           element={(
-            <div>
-              <SearchPageCollectionSorting.Provider value={sort}>
-                <SearchPage setSort={setSort} />
-              </SearchPageCollectionSorting.Provider>
-            </div>
-        )}
+            <SearchPageCollectionSorting.Provider value={sort}>
+              <SearchPage setSort={setSort} />
+            </SearchPageCollectionSorting.Provider>
+          )}
         />
         <Route path="collection" element={<Collection />} />
         <Route path="artists/:artistId" element={<Artist />} />

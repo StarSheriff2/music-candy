@@ -44,11 +44,15 @@ const SearchBar = () => {
           }}
           onKeyPress={handleKeyPress}
         />
-        <select id="types" name="types" onChange={handleSelect} className={styles.searchType}>
-          <option defaultValue={data.query.type}>All</option>
+        <select id="types" name="types" onChange={handleSelect} value={data.query.type} className={styles.searchType}>
+          <option value="all">All</option>
           <option value="artist">Artist</option>
           <option value="master">Release</option>
         </select>
+        {/* <select id="sort" name="sort" onChange={handleSelect} value={sort} className={styles.sortDd}>
+            <option value="artist">Artist</option>
+            <option value="title">Release Title</option>
+          </select> */}
       </div>
       {(data.results.length > 0) && (
       <div className={styles.searchResultsWrapper}>

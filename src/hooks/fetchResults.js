@@ -9,7 +9,7 @@ const useFetchResults = () => {
   const [data, setData] = useState({
     query: {
       slug: '',
-      type: null,
+      type: 'all',
       page: null,
       perPage: 15,
     },

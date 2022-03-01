@@ -27,7 +27,7 @@ const getArtistReleases = (id, page = null) => api.get(`artists/${id}/releases?p
 
 // const getReleaseVersions = ( id ) => api.get(`masters/${id}/versions`);
 
-const getVersionDetails = ( id ) => api.get(`releases/${id}`);
+const getVersionDetails = (id) => api.get(`releases/${id}`);
 
 // const searchBy = ({ query, type }) =>
 // discogsApiInstance.get(`database/search?q=${query}&type=${type}`);

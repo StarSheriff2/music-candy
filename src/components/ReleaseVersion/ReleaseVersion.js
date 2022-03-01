@@ -1,18 +1,18 @@
 /* eslint-disable camelcase */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Modal from 'react-bootstrap/Modal';
 import PropTypes from 'prop-types';
-import Spinner from 'react-bootstrap/Spinner';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Table from 'react-bootstrap/Table';
+import { v4 } from 'uuid';
 
-// import AddReleaseButton from '../AddReleaseButton/AddReleaseButton';
+import AddReleaseButton from '../AddReleaseButton/AddReleaseButton';
 import discogsApiService from '../../services/discogs.service';
 import { setMessage } from '../../slices/message';
 import styles from './ReleaseVersion.module.scss';
-import { span } from 'prelude-ls';
 
 const ReleaseVersion = ({ releaseId, show, setShowRelease }) => {
   const dispatch = useDispatch();
@@ -23,7 +23,6 @@ const ReleaseVersion = ({ releaseId, show, setShowRelease }) => {
   const loadData = async () => {
     try {
       const response = await discogsApiService.getVersionDetails(releaseId);
-      console.log('data has been dowloaded')
       setReleaseData(response.data);
     } catch (error) {
       const message = (error.response
@@ -34,81 +33,6 @@ const ReleaseVersion = ({ releaseId, show, setShowRelease }) => {
       dispatch(setMessage({ message, type: 'danger' }));
     }
   };
-
-  console.log({releaseData});
-
-//   const releaseObg = {
-
-//     artists: [Object] (1)
-
-// artists_sort: "Beatles, The"
-
-// blocked_from_sale: false
-
-// community: {have: 224, want: 459, rating: {count: 24, average: 4.58}, submitter: {username: "ziggystardust60", resource_url: "https://api.discogs.com/users/ziggystardust60"}, contributors: Array, …}
-
-// companies: [] (0)
-
-// country: "Italy"
-
-// data_quality: "Needs Vote"
-
-// date_added: "2013-10-10T13:32:48-07:00"
-
-// date_changed: "2021-05-27T06:18:26-07:00"
-
-// estimated_weight: 170
-
-// extraartists: [Object, Object, Object, Object, Object, Object, Object, Object, Object] (9)
-
-// format_quantity: 2
-
-// formats: [{name: "CD", qty: "2", descriptions: ["Album", "Remastered", "Enhanced"]}] (1)
-
-// genres: ["Rock"] (1)
-
-// id: 4987524
-
-// identifiers: [{type: "Rights Society", value: "SDRM BIEM"}, {type: "Mastering SID Code", value: "IFPI LN12"}, {type: "Matrix / Runout", value: "MX 25520 BEATLES 4cd1 CD094P804"}, {type: "Matrix / Runout", value: "MX 26141 BEATLES 4cd2 CD094P815"}, {type: "Label Code", value: "LC 0299"}] (5)
-
-// images: [Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, …] (19)
-
-// labels: [Object, Object] (2)
-
-// lowest_price: 8
-
-// master_id: 46402
-
-// master_url: "https://api.discogs.com/masters/46402"
-
-// notes: "The 2nd CD incudes a data track: The Beatles Mini Documentary (Visible on a computer)↵Includes a 28-page booklet + Poster ↵Italian editio…"
-
-// num_for_sale: 4
-
-// released: "2012-11-06"
-
-// released_formatted: "06 Nov 2012"
-
-// resource_url: "https://api.discogs.com/releases/4987524"
-
-// series: [Object] (1)
-
-// status: "Accepted"
-
-// styles: ["Art Rock", "Pop Rock"] (2)
-
-// thumb: "https://i.discogs.com/ytMPN1W0pNUG4f_5rCKG1wFiSfO7LWmm3gTlvGvy2g0/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWltYWdlcy9SLTQ5/ODc1MjQtMTM…"
-
-// title: "The Beatles"
-
-// tracklist: [Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, …] (32)
-
-// uri: "https://www.discogs.com/release/4987524-The-Beatles-The-Beatles"
-
-// videos: [Object, Object, Object, Object, Object, Object, Object, Object, Object, Object, …] (35)
-
-// year: 2012
-//   }
 
   return (
     <Modal
@@ -121,38 +45,114 @@ const ReleaseVersion = ({ releaseId, show, setShowRelease }) => {
     >
       <Modal.Header closeButton>
         <Modal.Title>
-          {releaseData && releaseData.title}
+          {releaseData && <h2 className="fs-1">{releaseData.title}</h2>}
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
+
         {releaseData && (
-          <Container >
-            <Row>
-              <Col xs={3}>
-                Label
-              </Col>
-              <Col className="overflow-hidden">
-                {releaseData && <span>{releaseData.labels.map((l, ind, arr) => (
-                  <span key={l.id + ind}>{`${l.name}${(ind !== arr.length - 1) ? ', ' : ''}`}</span>
-                ))}</span>}
-              </Col>
-            </Row>
-            <Row>
-              <Col xs={3}>
-                <span >Formats</span>
-              </Col>
-              <Col className="overflow-hidden">
-                {releaseData && <span>{releaseData.formats.map((f, ind, arr) => (
-                  <span key={f.id + ind}>{`${f.name}${(ind !== arr.length - 1) ? ', ' : ''}`}</span>
-                ))}</span>}
-              </Col>
-            </Row>
-            Hello!
+          <Container>
+              {('thumb' in releaseData) && (
+                <Row>
+                  <Col
+                    className="d-flex mb-4"
+                  >
+                    <img src={releaseData.thumb} alt="album thumb" />
+                  </Col>
+                </Row>
+              )}
+            <section className="mx-5 mb-4">
+              <Row>
+                <Col xs={3}>
+                  Label
+                </Col>
+                <Col className="overflow-hidden">
+                  {'labels' in releaseData && (
+                  <span>
+                    {releaseData.labels.map((l, ind, arr) => (
+                      <span key={v4()}>
+                        {`${l.name}${(ind !== arr.length - 1) ? ', ' : ''}`}
+                      </span>
+                    ))}
+                  </span>
+                  )}
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={3}>
+                  <span>Formats</span>
+                </Col>
+                <Col className="overflow-hidden">
+                  {'formats' in releaseData && (
+                  <span>
+                    {releaseData.formats.map((f, ind, arr) => (
+                      <span key={v4()}>
+                        {`${f.name}${(ind !== arr.length - 1) ? ', ' : ''}`}
+                      </span>
+                    ))}
+                  </span>
+                  )}
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={3}>
+                  <span>Country</span>
+                </Col>
+                <Col className="overflow-hidden">
+                  {'country' in releaseData && (
+                  <span>
+                    {releaseData.country}
+                  </span>
+                  )}
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={3}>
+                  <span>Released</span>
+                </Col>
+                <Col className="overflow-hidden">
+                  {'released_formatted' in releaseData && (
+                  <span>
+                    {releaseData.released_formatted}
+                  </span>
+                  )}
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={3}>
+                  <span>Genre</span>
+                </Col>
+                <Col className="overflow-hidden">
+                  {'genres' in releaseData && (
+                  <span>
+                    {releaseData.genres.map((g, ind, arr) => (
+                      <span key={v4()}>{`${g}${(ind !== arr.length - 1) ? ', ' : ''}`}</span>
+                    ))}
+                  </span>
+                  )}
+                </Col>
+              </Row>
+            </section>
+            {('tracklist' in releaseData) && (
+              <section>
+                <h2 className="mb-4"><strong>Tracklist</strong></h2>
+                <Table>
+                  <tbody>
+                    {releaseData.tracklist.map((t) => (
+                      <tr key={v4()} className="border-top border-1 border-dark">
+                        <td>{t.position}</td>
+                        <td>{t.title}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </Table>
+              </section>
+            )}
           </Container>
         )}
       </Modal.Body>
       <Modal.Footer>
-        Add Release to Collection
+        {releaseData && (<AddReleaseButton releaseId={releaseData.id} context="releaseVersion" />)}
       </Modal.Footer>
     </Modal>
   );
@@ -160,9 +160,7 @@ const ReleaseVersion = ({ releaseId, show, setShowRelease }) => {
 
 ReleaseVersion.propTypes = {
   show: PropTypes.bool.isRequired,
-  // releaseId: PropTypes.shape(
-  //   null,
-  // ).isRequired,
+  releaseId: PropTypes.number.isRequired,
   setShowRelease: PropTypes.func.isRequired,
 };
 

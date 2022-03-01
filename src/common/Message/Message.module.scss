@@ -1,0 +1,11 @@
+.messageContainer {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+}
+
+.messageBox {
+  width: fit-content;
+  margin: 0 auto;
+  z-index: 5;
+}

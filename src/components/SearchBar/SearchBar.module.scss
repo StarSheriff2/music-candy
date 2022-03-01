@@ -1,0 +1,71 @@
+@import '../../styles/abstracts/variables';
+
+.searchBarWrapper {
+  position: fixed;
+  height: 4rem;
+  left: 2rem;
+  right: 2rem;
+  z-index: 2;
+}
+
+.searchBar {
+  display: flex;
+  border-radius: 20px;
+  background-color: $white;
+  align-items: center;
+  position: relative;
+  height: 100%;
+}
+
+.searchInput {
+  width: 100%;
+  height: 100%;
+  border: none;
+  padding-left: 5rem;
+  border-radius: 20px;
+  padding-right: 10rem;
+}
+
+.searchIcon {
+  background-color: transparent;
+  color: black;
+  position: absolute;
+  left: 2rem;
+}
+
+.searchType {
+  position: absolute;
+  right: 2rem;
+  height: 100%;
+  font-size: 1.4rem;
+  letter-spacing: 0.1rem;
+  padding: 0 0.5rem;
+  width: 8rem;
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+}
+
+.searchTypeOption {
+  font-size: 30px;
+}
+
+.searchResultsWrapper {
+  width: 100%;
+  position: absolute;
+  top: 5rem;
+  z-index: 3;
+  max-height: 70vh;
+  overflow: scroll;
+}
+
+.searchResults {
+  padding: 1rem;
+  overflow: scroll;
+  background-color: $complementary-color;
+  color: $complementary-color-text;
+  font-size: 1rem;
+  height: 100%;
+  margin: 0 auto;
+  width: 80%;
+}

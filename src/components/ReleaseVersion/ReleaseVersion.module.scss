@@ -1,0 +1,20 @@
+@import '../../styles/abstracts/variables';
+
+.modal {
+  background-color: $complementary-color;
+  color: $complementary-color-text;
+}
+
+.header {
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

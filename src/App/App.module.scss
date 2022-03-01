@@ -1,0 +1,28 @@
+@import './../styles/abstracts/variables';
+
+.bottomNav {
+  height: 7rem;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  color: $primary-color;
+  border-top: $light-bg 1px solid;
+  background-color: $dark-bg;
+}
+
+.link {
+  width: 100%;
+}
+
+.linkIcon {
+  color: $primary-color;
+  font-size: 4rem;
+
+  &:hover {
+    color: $light-bg;
+  }
+}
+
+.noMatch {
+  padding: 1rem;
+}

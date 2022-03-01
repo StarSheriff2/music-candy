@@ -1,0 +1,33 @@
+@import '../../styles/abstracts/variables';
+
+.page {
+  height: calc(100vh - 10.5rem);
+  overflow: scroll;
+  padding: 0 2rem 2rem;
+}
+
+.title {
+  font-size: 2rem;
+  margin: 2rem auto;
+}
+
+.artistImage {
+  width: 60vw;
+  height: 40vh;
+  object-fit: cover;
+  margin-top: 2rem;
+}
+
+.description {
+  overflow: scroll;
+  max-height: 30vh;
+  margin-bottom: 2rem;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}

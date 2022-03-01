@@ -1,0 +1,57 @@
+@import '../../styles/abstracts/variables';
+
+.container {
+  border-top: $light-bg 1px solid;
+}
+
+.sortDd {
+  font-size: 1.4rem;
+  letter-spacing: 0.1rem;
+  padding: 0.8rem 2.2rem 0.8rem 0.5rem;
+  width: fit-content;
+  color: white;
+  background-color: transparent;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='lightgray' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position-x: 100%;
+  background-position-y: 50%;
+  border: none;
+}
+
+.collectionListWrapper {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.releaseCard {
+  width: 150px;
+  margin-right: 1.6rem;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.thumbnail {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 0 auto 1rem;
+  display: block;
+  box-sizing: border-box;
+}
+
+.title,
+.name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}

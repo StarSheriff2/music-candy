@@ -12,3 +12,9 @@
   align-items: center;
   padding: 1rem;
 }
+
+.title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

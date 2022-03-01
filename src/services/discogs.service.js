@@ -21,11 +21,13 @@ const getArtistInfo = (id) => api.get(`artists/${id}`);
 
 const getArtistReleases = (id, page = null) => api.get(`artists/${id}/releases?page=${page}&sort=year&sort_order=asc`);
 
-const getReleaseInfo = ({ id }) => api.get(`masters/${id}`);
+// For upcoming features:
 
-const getReleaseVersions = ({ id }) => api.get(`masters/${id}/versions`);
+// const getReleaseInfo = ( id ) => api.get(`masters/${id}`);
 
-const getVersionDetails = ({ id }) => api.get(`releases/${id}`);
+// const getReleaseVersions = ( id ) => api.get(`masters/${id}/versions`);
+
+const getVersionDetails = (id) => api.get(`releases/${id}`);
 
 // const searchBy = ({ query, type }) =>
 // discogsApiInstance.get(`database/search?q=${query}&type=${type}`);
@@ -67,8 +69,6 @@ const discogsApiService = {
   search,
   getArtistInfo,
   getArtistReleases,
-  getReleaseInfo,
-  getReleaseVersions,
   getVersionDetails,
   addToCollection,
 };

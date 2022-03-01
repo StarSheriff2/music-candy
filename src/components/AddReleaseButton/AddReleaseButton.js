@@ -9,7 +9,7 @@ import { clearMessage } from '../../slices/message';
 import SearchPageCollectionSorting from '../../Context';
 import styles from './AddReleaseButton.module.scss';
 
-const AddReleaseButton = ({ releaseId }) => {
+const AddReleaseButton = ({ releaseId, context }) => {
   const sort = useContext(SearchPageCollectionSorting);
   const dispatch = useDispatch();
 
@@ -37,11 +37,13 @@ const AddReleaseButton = ({ releaseId }) => {
     setLoading(true);
   };
 
+  const buttonValue = (context) ? <span>Add Release</span> : <FontAwesomeIcon icon={faAdd} />;
+
   return (
     <div className="d-flex">
       <button
         type="button"
-        className={styles.addButton}
+        className={(context) ? styles.modalAddButton : styles.addButton}
         onClick={!isLoading ? handleClick : null}
         disabled={isLoading}
       >
@@ -52,17 +54,20 @@ const AddReleaseButton = ({ releaseId }) => {
             </Spinner>
           )
           : (
-            <FontAwesomeIcon
-              icon={faAdd}
-            />
+            buttonValue
           )}
       </button>
     </div>
   );
 };
 
+AddReleaseButton.defaultProps = {
+  context: null,
+};
+
 AddReleaseButton.propTypes = {
   releaseId: PropTypes.number.isRequired,
+  context: PropTypes.string,
 };
 
 export default AddReleaseButton;

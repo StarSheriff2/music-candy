@@ -9,7 +9,7 @@ import { clearMessage } from '../../slices/message';
 import SearchPageCollectionSorting from '../../Context';
 import styles from './AddReleaseButton.module.scss';
 
-const AddReleaseButton = ({ releaseId, context }) => {
+const AddReleaseButton = ({ releaseId, context, setShowRelease }) => {
   const sort = useContext(SearchPageCollectionSorting);
   const dispatch = useDispatch();
 
@@ -34,7 +34,12 @@ const AddReleaseButton = ({ releaseId, context }) => {
 
   const handleClick = (e) => {
     e.stopPropagation();
-    setLoading(true);
+    if (context) {
+      setShowRelease(false);
+      dispatch(addRelease({ releaseId, sort }));
+    } else {
+      setLoading(true);
+    }
   };
 
   const buttonValue = (context) ? <span>Add Release</span> : <FontAwesomeIcon icon={faAdd} />;

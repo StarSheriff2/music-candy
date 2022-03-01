@@ -30,6 +30,7 @@ const ReleaseVersion = ({ releaseId, show, setShowRelease }) => {
           && error.response.data.message)
         || error.message
         || error.toString();
+      handleClose();
       dispatch(setMessage({ message, type: 'danger' }));
     }
   };
@@ -38,7 +39,6 @@ const ReleaseVersion = ({ releaseId, show, setShowRelease }) => {
     <Modal
       show={show}
       onHide={handleClose}
-      // size="lg"
       centered
       contentClassName={styles.modal}
       onEnter={loadData}
@@ -152,7 +152,13 @@ const ReleaseVersion = ({ releaseId, show, setShowRelease }) => {
         )}
       </Modal.Body>
       <Modal.Footer>
-        {releaseData && (<AddReleaseButton releaseId={releaseData.id} context="releaseVersion" />)}
+        {releaseData && (
+        <AddReleaseButton
+          releaseId={releaseData.id}
+          context="releaseVersion"
+          setShowRelease={setShowRelease}
+        />
+        )}
       </Modal.Footer>
     </Modal>
   );

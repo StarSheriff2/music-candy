@@ -99,7 +99,7 @@ To get a local copy up and running, follow these simple example steps.
 3. Now type `yarn start` or `npm run start`. It will load the project in your default browser.<br><br>
 **Note:<br>_This command will not stop on its own. If you change something in your project files, it will recompile and reload the page in your browser. To exit, hit "ctrl + c"_**
 
-### Weather App Calendar API and Third-party APIs Env Files
+### Discogs API Setup
 
 1. To make this app work in local development you will need to authenticate it follwing OAuth 1.0's authentication procedure. You can find detailed information about this [here](https://www.discogs.com/developers/).
 

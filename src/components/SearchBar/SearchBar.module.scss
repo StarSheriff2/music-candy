@@ -1,8 +1,11 @@
 @import '../../styles/abstracts/variables';
 
 .searchBarWrapper {
-  position: relative;
+  position: fixed;
   height: 4rem;
+  left: 2rem;
+  right: 2rem;
+  z-index: 2;
 }
 
 .searchBar {

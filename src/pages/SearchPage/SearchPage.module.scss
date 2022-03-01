@@ -1,17 +1,20 @@
 @import '../../styles/abstracts/variables';
 
 .searchPage {
-  height: calc(100vh - 10.5rem);
-  display: grid;
-  grid-template-rows: auto 1fr 215px;
-  row-gap: 1rem;
   position: relative;
-  padding: 0 2rem 2rem;
+  padding: 0 2rem;
+  height: calc(100vh - 10.5rem);
 }
 
 .resultsSection {
   overflow: scroll;
   text-align: center;
+  padding-bottom: 27rem;
+  position: fixed;
+  top: 85px;
+  bottom: 0;
+  right: 2rem;
+  left: 2rem;
 
   /* Hide scrollbar for Chrome, Safari and Opera */
   &::-webkit-scrollbar {
@@ -26,4 +29,9 @@
 .collectionSection {
   display: grid;
   grid-template-rows: 10% 1fr;
+  position: fixed;
+  bottom: 7rem;
+  left: 2rem;
+  right: 2rem;
+  background-color: $dark-bg;
 }

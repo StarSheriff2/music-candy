@@ -36,7 +36,7 @@ const Collection = ({ setSort }) => {
 
   return (
     <>
-      <div className={`d-flex justify-content-between pt-3 ${styles.container}`}>
+      <div className={`d-flex pt-3 justify-content-between ${styles.container}`}>
         <h2 className={styles.title}>
           My Collection
           {pagination.items && (

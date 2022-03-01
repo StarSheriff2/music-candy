@@ -17,6 +17,13 @@
 
 .modalAddButton {
   background-color: $secondary-color;
-  padding: 1.5rem 2.5rem;
+  border: solid 1px $secondary-color;
+  padding: calc(1.5rem - 1px) calc(2.5rem - 1px);
   color: white;
+
+  &:hover {
+    background-color: transparent;
+    border: solid 1px $secondary-color;
+    color: $secondary-color;
+  }
 }

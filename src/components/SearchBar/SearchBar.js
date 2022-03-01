@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import Form from 'react-bootstrap/Form';
 import { search } from '../../slices/discogsSearch';
 import useFetchResults from '../../hooks/fetchResults';
 import styles from './SearchBar.module.scss';
@@ -44,15 +45,11 @@ const SearchBar = () => {
           }}
           onKeyPress={handleKeyPress}
         />
-        <select id="types" name="types" onChange={handleSelect} value={data.query.type} className={styles.searchType}>
+        <Form.Select onChange={handleSelect} value={data.query.type} className={styles.searchType}>
           <option value="all">All</option>
           <option value="artist">Artist</option>
           <option value="master">Release</option>
-        </select>
-        {/* <select id="sort" name="sort" onChange={handleSelect} value={sort} className={styles.sortDd}>
-            <option value="artist">Artist</option>
-            <option value="title">Release Title</option>
-          </select> */}
+        </Form.Select>
       </div>
       {(data.results.length > 0) && (
       <div className={styles.searchResultsWrapper}>

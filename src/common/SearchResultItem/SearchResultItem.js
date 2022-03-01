@@ -51,7 +51,7 @@ const SearchResultItem = ({ result, context }) => {
             </div>
           )}
       </div>
-      {(result.type === 'release') && <ReleaseVersion release={result} show={showRelease} setShowRelease={setShowRelease} />}
+      {(result.type === 'release') && <ReleaseVersion releaseId={result.id} show={showRelease} setShowRelease={setShowRelease} />}
     </>
   );
 };

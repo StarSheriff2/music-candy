@@ -1,7 +1,6 @@
 import React, { useEffect, useContext, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import Form from 'react-bootstrap/Form';
 import { get, discogsCollectionState } from '../../slices/discogsCollection';
 import { clearMessage } from '../../slices/message';
 import styles from './Collection.module.scss';
@@ -49,13 +48,13 @@ const Collection = ({ setSort }) => {
           </span>
           )}
         </h2>
-        <div className="d-flex">
-          <p>Sort by</p>
-          <Form.Select onChange={handleSelect} value={sort} className={styles.sortDd}>
+        <label htmlFor="sort">
+          Sort by
+          <select id="sort" name="sort" onChange={handleSelect} value={sort} className={styles.sortDd}>
             <option value="artist">Artist</option>
             <option value="title">Release Title</option>
-          </Form.Select>
-        </div>
+          </select>
+        </label>
       </div>
       <div className={`d-flex overflow-scroll justify-content-between ${styles.collectionListWrapper}`}>
         {collection.map((c) => {

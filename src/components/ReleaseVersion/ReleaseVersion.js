@@ -4,10 +4,15 @@ import { useDispatch } from 'react-redux';
 import Modal from 'react-bootstrap/Modal';
 import PropTypes from 'prop-types';
 import Spinner from 'react-bootstrap/Spinner';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 // import AddReleaseButton from '../AddReleaseButton/AddReleaseButton';
 import discogsApiService from '../../services/discogs.service';
 import { setMessage } from '../../slices/message';
 import styles from './ReleaseVersion.module.scss';
+import { span } from 'prelude-ls';
 
 const ReleaseVersion = ({ releaseId, show, setShowRelease }) => {
   const dispatch = useDispatch();
@@ -120,7 +125,31 @@ const ReleaseVersion = ({ releaseId, show, setShowRelease }) => {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        Release Description
+        {releaseData && (
+          <Container >
+            <Row>
+              <Col xs={3}>
+                Label
+              </Col>
+              <Col className="overflow-hidden">
+                {releaseData && <span>{releaseData.labels.map((l, ind, arr) => (
+                  <span key={l.id + ind}>{`${l.name}${(ind !== arr.length - 1) ? ', ' : ''}`}</span>
+                ))}</span>}
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={3}>
+                <span >Formats</span>
+              </Col>
+              <Col className="overflow-hidden">
+                {releaseData && <span>{releaseData.formats.map((f, ind, arr) => (
+                  <span key={f.id + ind}>{`${f.name}${(ind !== arr.length - 1) ? ', ' : ''}`}</span>
+                ))}</span>}
+              </Col>
+            </Row>
+            Hello!
+          </Container>
+        )}
       </Modal.Body>
       <Modal.Footer>
         Add Release to Collection

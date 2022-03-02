@@ -7,7 +7,7 @@ import ReleaseVersion from '../../components/ReleaseVersion/ReleaseVersion';
 import styles from './SearchResultItem.module.scss';
 import albumNoArt from '../no-album-art.jpeg';
 
-const SearchResultItem = ({ result, context }) => {
+const SearchResultItem = ({ result, context, setShow }) => {
   const [showRelease, setShowRelease] = useState(false);
 
   const handleClick = () => {
@@ -44,7 +44,7 @@ const SearchResultItem = ({ result, context }) => {
         </div>
         {(result.type === 'release')
           ? (
-            <AddReleaseButton releaseId={result.id} />
+            <AddReleaseButton releaseId={result.id} context={context} setShow={setShow} />
           ) : (
             <div className="d-flex">
               <FontAwesomeIcon icon={faChevronRight} className={(context === 'searchBar') ? styles.colorB : styles.colorA} />
@@ -54,6 +54,10 @@ const SearchResultItem = ({ result, context }) => {
       {(result.type === 'release') && <ReleaseVersion releaseId={result.id} show={showRelease} setShowRelease={setShowRelease} />}
     </>
   );
+};
+
+SearchResultItem.defaultProps = {
+  setShow: null,
 };
 
 SearchResultItem.propTypes = {
@@ -66,6 +70,7 @@ SearchResultItem.propTypes = {
     id: PropTypes.number.isRequired,
   }).isRequired,
   context: PropTypes.string.isRequired,
+  setShow: PropTypes.func,
 };
 
 export default SearchResultItem;

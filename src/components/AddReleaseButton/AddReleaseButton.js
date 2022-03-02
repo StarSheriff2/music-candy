@@ -9,7 +9,7 @@ import { clearMessage } from '../../slices/message';
 import SearchPageCollectionSorting from '../../Context';
 import styles from './AddReleaseButton.module.scss';
 
-const AddReleaseButton = ({ releaseId, context, setShowRelease }) => {
+const AddReleaseButton = ({ releaseId, context, setShowRelease, setShow }) => {
   const sort = useContext(SearchPageCollectionSorting);
   const dispatch = useDispatch();
 
@@ -34,21 +34,25 @@ const AddReleaseButton = ({ releaseId, context, setShowRelease }) => {
 
   const handleClick = (e) => {
     e.stopPropagation();
-    if (context) {
+    if (context === 'releaseVersion') {
       setShowRelease(false);
       dispatch(addRelease({ releaseId, sort }));
-    } else {
+    } else if (context === 'searchBar') {
+      setShow(false);
+      dispatch(addRelease({ releaseId, sort }));
+    }
+    else {
       setLoading(true);
     }
   };
 
-  const buttonValue = (context) ? <span>Add Release</span> : <FontAwesomeIcon icon={faAdd} />;
+  const buttonValue = (context === 'releaseVersion') ? <span>Add Release</span> : <FontAwesomeIcon icon={faAdd} />;
 
   return (
     <div className="d-flex">
       <button
         type="button"
-        className={(context) ? styles.modalAddButton : styles.addButton}
+        className={(context === 'releaseVersion') ? styles.modalAddButton : styles.addButton}
         onClick={!isLoading ? handleClick : null}
         disabled={isLoading}
       >
@@ -68,11 +72,13 @@ const AddReleaseButton = ({ releaseId, context, setShowRelease }) => {
 
 AddReleaseButton.defaultProps = {
   context: null,
+  setShowRelease: null,
 };
 
 AddReleaseButton.propTypes = {
   releaseId: PropTypes.number.isRequired,
   context: PropTypes.string,
+  setShowRelease: PropTypes.func,
 };
 
 export default AddReleaseButton;

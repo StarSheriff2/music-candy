@@ -6,7 +6,7 @@ import SearchResultItem from '../../common/SearchResultItem/SearchResultItem';
 import PaginationButtons from '../../common/PaginationButtons/PaginationButtons';
 import styles from './SearchResults.module.scss';
 
-const SearchResults = ({ results, pagination, context }) => (
+const SearchResults = ({ results, pagination, context, setShow }) => (
   <div className="text-start">
     {results.map((r) => {
       if (r.type !== 'release') {
@@ -20,7 +20,7 @@ const SearchResults = ({ results, pagination, context }) => (
           </Link>
         );
       }
-      return (<SearchResultItem key={r.id} result={r} context={context} />);
+      return (<SearchResultItem key={r.id} result={r} context={context} setShow={setShow} />);
     })}
     {pagination && (
       <>

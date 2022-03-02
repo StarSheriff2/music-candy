@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
@@ -13,8 +13,21 @@ const SearchBar = () => {
 
   const dispatch = useDispatch();
 
+  const [showResults, setShow] = useState(false);
+
   const handleSelect = (event) => {
     setData((prevData) => ({ ...prevData, query: { ...data.query, type: event.target.value } }));
+  };
+
+  const handleOnFocus = () => setShow(true);
+
+  const handleOnBlur = (e) => {
+    const searchResultsWrapper = document.getElementById('searchBarResults');
+    const t = e.relatedTarget;
+    if (!(searchResultsWrapper
+      && (searchResultsWrapper === t || searchResultsWrapper.contains(t)))) {
+      setShow(false);
+    }
   };
 
   const handleKeyPress = (event) => {
@@ -44,6 +57,8 @@ const SearchBar = () => {
             }));
           }}
           onKeyPress={handleKeyPress}
+          onFocus={handleOnFocus}
+          onBlur={handleOnBlur}
         />
         <Form.Select onChange={handleSelect} value={data.query.type} className={styles.searchType}>
           <option value="all">All</option>
@@ -51,10 +66,10 @@ const SearchBar = () => {
           <option value="master">Release</option>
         </Form.Select>
       </div>
-      {(data.results.length > 0) && (
-      <div className={styles.searchResultsWrapper}>
+      {(data.results.length > 0 && showResults) && (
+      <div id="searchBarResults" className={styles.searchResultsWrapper}>
         <div className={styles.searchResults}>
-          <SearchResults results={data.results} context="searchBar" />
+          <SearchResults results={data.results} context="searchBar" setShow={setShow} />
         </div>
       </div>
       )}

@@ -22,10 +22,11 @@ const SearchBar = () => {
   const handleOnFocus = () => setShow(true);
 
   const handleOnBlur = (e) => {
-    const searchResultsWrapper = document.getElementById("searchBarResults");
+    const searchResultsWrapper = document.getElementById('searchBarResults');
     const t = e.relatedTarget;
-    if (!(searchResultsWrapper && (searchResultsWrapper === t || searchResultsWrapper.contains(t)))) {
-      setShow(false)
+    if (!(searchResultsWrapper
+      && (searchResultsWrapper === t || searchResultsWrapper.contains(t)))) {
+      setShow(false);
     }
   };
 

@@ -56,6 +56,10 @@ const SearchResultItem = ({ result, context, setShow }) => {
   );
 };
 
+SearchResultItem.defaultProps = {
+  setShow: null,
+};
+
 SearchResultItem.propTypes = {
   result: PropTypes.shape({
     type: PropTypes.string.isRequired,
@@ -66,6 +70,7 @@ SearchResultItem.propTypes = {
     id: PropTypes.number.isRequired,
   }).isRequired,
   context: PropTypes.string.isRequired,
+  setShow: PropTypes.func,
 };
 
 export default SearchResultItem;

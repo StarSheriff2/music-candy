@@ -9,7 +9,9 @@ import { clearMessage } from '../../slices/message';
 import SearchPageCollectionSorting from '../../Context';
 import styles from './AddReleaseButton.module.scss';
 
-const AddReleaseButton = ({ releaseId, context, setShowRelease, setShow }) => {
+const AddReleaseButton = ({
+  releaseId, context, setShowRelease, setShow,
+}) => {
   const sort = useContext(SearchPageCollectionSorting);
   const dispatch = useDispatch();
 
@@ -40,8 +42,7 @@ const AddReleaseButton = ({ releaseId, context, setShowRelease, setShow }) => {
     } else if (context === 'searchBar') {
       setShow(false);
       dispatch(addRelease({ releaseId, sort }));
-    }
-    else {
+    } else {
       setLoading(true);
     }
   };
@@ -73,12 +74,14 @@ const AddReleaseButton = ({ releaseId, context, setShowRelease, setShow }) => {
 AddReleaseButton.defaultProps = {
   context: null,
   setShowRelease: null,
+  setShow: null,
 };
 
 AddReleaseButton.propTypes = {
   releaseId: PropTypes.number.isRequired,
   context: PropTypes.string,
   setShowRelease: PropTypes.func,
+  setShow: PropTypes.func,
 };
 
 export default AddReleaseButton;

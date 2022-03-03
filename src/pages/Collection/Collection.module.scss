@@ -1,0 +1,30 @@
+@import '../../styles/abstracts/variables';
+
+.collectionListContainer {
+  margin-top: 3.5rem;
+}
+
+.column {
+  height: 180px;
+  width: 150px;
+}
+
+.imgWrapper {
+  height: 130px;
+  width: 130px;
+  border-radius: 5px;
+}
+
+.thumb {
+  height: 130px;
+  width: 130px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}

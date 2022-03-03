@@ -31,7 +31,7 @@ const PageHeader = () => {
   }
 
   return (
-    <header className={`d-flex position-relative ${styles.pageHeader}`}>
+    <header className={`d-flex ${styles.pageHeader}`}>
       {headerContent}
     </header>
   );

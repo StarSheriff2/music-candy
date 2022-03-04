@@ -5,21 +5,41 @@
 }
 
 .column {
+  height: 240px;
+  // width: 150px;
+}
+
+.releaseCard {
+  // background-color: red;
+  height: 200px;
+  max-width: 200px;
+}
+
+.releaseContentWrapper {
   height: 180px;
-  width: 150px;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 80% 20%;
 }
 
 .imgWrapper {
-  height: 130px;
-  width: 130px;
+  width: 100%;
+  position: relative;
   border-radius: 5px;
+  // margin-bottom: 1rem;
 }
 
 .thumb {
-  height: 130px;
-  width: 130px;
-  border-radius: 5px;
+  // height: 100%;
+  // width: auto;
+  // border-radius: 5px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   object-fit: cover;
+  background-color: red;
 }
 
 .title {

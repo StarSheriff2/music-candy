@@ -26,16 +26,27 @@ const Collection = () => {
         ? (
           <>
             <Container className={styles.collectionListContainer}>
-              <Row xs={6} className="justify-content-center">
+              <Row xs={2} className="justify-content-center">
                 {collection.map((release) => {
                   const { instance_id, basic_information } = release;
                   const { title, thumb } = basic_information;
 
                   return (
                     <Col key={instance_id} className={`justify-content-center ${styles.column}`}>
-                      <div className={`position-relative ${styles.imgWrapper}`}>
-                        <img src={thumb} alt="title album thumb" className={styles.thumb} />
-                        <p className={styles.title}>{title}</p>
+                      <div className={`d-flex flex-column justify-content-start align-items-center p-3 ${styles.releaseCard}`}>
+                        <div className={styles.releaseContentWrapper}>
+                          <div
+                            className={styles.imgWrapper}
+                            // styles={`background: url("${thumb}") no-repeat cover center;`}
+                            style={{
+                              background: `url(${thumb}) center center/cover no-repeat content-box, rgb(153, 140, 140)`,
+                            }}
+                          >
+                            {/* <img src={thumb} alt="title album thumb" className={styles.thumb} /> */}
+                            {/* <div className={styles.thumb}></div> */}
+                          </div>
+                          <p className={styles.title}>{title}</p>
+                        </div>
                       </div>
                     </Col>
                   );

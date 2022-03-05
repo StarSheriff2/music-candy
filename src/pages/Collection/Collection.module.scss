@@ -2,6 +2,7 @@
 
 .collectionListContainer {
   margin-top: 3.5rem;
+  padding-bottom: 7rem;
 }
 
 .column {
@@ -37,6 +38,7 @@
       border-radius: 5%;
       background-color: rgba(255, 255, 255, 0.08);
       z-index: -2;
+      transition: ease-in 0.1;
     }
   }
 }

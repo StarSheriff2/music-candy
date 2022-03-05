@@ -54,7 +54,7 @@ const Collection = () => {
           </>
         )
         : (
-          <div className="d-flex" style={{ marginTop: '3.5rem'}}>
+          <div className="d-flex" style={{ marginTop: '3.5rem' }}>
             <Spinner animation="border" role="status" className="my-4">
               <span className="visually-hidden">Loading...</span>
             </Spinner>

@@ -26,24 +26,22 @@ const Collection = () => {
         ? (
           <>
             <Container className={styles.collectionListContainer}>
-              <Row xs={2} className="justify-content-center">
+              <Row xs={2} sm={3} className="justify-content-center">
                 {collection.map((release) => {
                   const { instance_id, basic_information } = release;
                   const { title, thumb } = basic_information;
 
                   return (
-                    <Col key={instance_id} className={`justify-content-center ${styles.column}`}>
+                    <Col key={instance_id} className="justify-content-center">
                       <div className={`d-flex flex-column justify-content-start align-items-center p-3 ${styles.releaseCard}`}>
                         <div className={styles.releaseContentWrapper}>
-                          <div
-                            className={styles.imgWrapper}
-                            // styles={`background: url("${thumb}") no-repeat cover center;`}
-                            style={{
-                              background: `url(${thumb}) center center/cover no-repeat content-box, rgb(153, 140, 140)`,
-                            }}
-                          >
-                            {/* <img src={thumb} alt="title album thumb" className={styles.thumb} /> */}
-                            {/* <div className={styles.thumb}></div> */}
+                          <div className={styles.imgWrapper}>
+                            <div
+                              className={styles.backgroundImageDiv}
+                              style={{
+                                background: `url(${thumb}) center center/cover no-repeat content-box`,
+                              }}
+                            />
                           </div>
                           <p className={styles.title}>{title}</p>
                         </div>
@@ -56,7 +54,7 @@ const Collection = () => {
           </>
         )
         : (
-          <div className="d-flex">
+          <div className="d-flex" style={{ marginTop: '3.5rem'}}>
             <Spinner animation="border" role="status" className="my-4">
               <span className="visually-hidden">Loading...</span>
             </Spinner>

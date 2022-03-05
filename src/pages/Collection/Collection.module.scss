@@ -4,42 +4,29 @@
   margin-top: 3.5rem;
 }
 
-.column {
-  height: 240px;
-  // width: 150px;
-}
-
 .releaseCard {
-  // background-color: red;
-  height: 200px;
-  max-width: 200px;
+  width: 100%;
+  margin-bottom: 1.5rem;
 }
 
 .releaseContentWrapper {
-  height: 180px;
   width: 100%;
-  display: grid;
-  grid-template-rows: 80% 20%;
 }
 
 .imgWrapper {
-  width: 100%;
   position: relative;
-  border-radius: 5px;
-  // margin-bottom: 1rem;
+  width: 100%;
+  padding-top: 100%;
+  height: 0;
+  margin-bottom: 0.5rem;
 }
 
-.thumb {
-  // height: 100%;
-  // width: auto;
-  // border-radius: 5px;
+.backgroundImageDiv {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  object-fit: cover;
-  background-color: red;
 }
 
 .title {
@@ -47,4 +34,5 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
+  margin-bottom: 0.5rem;
 }

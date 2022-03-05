@@ -32,7 +32,7 @@ const Collection = () => {
                   const { title, thumb } = basic_information;
 
                   return (
-                    <Col key={instance_id} className="justify-content-center">
+                    <Col key={instance_id} className={`justify-content-center ${styles.column}`}>
                       <div className={`d-flex flex-column justify-content-start align-items-center p-3 ${styles.releaseCard}`}>
                         <div className={styles.releaseContentWrapper}>
                           <div className={styles.imgWrapper}>

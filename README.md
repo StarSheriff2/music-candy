@@ -30,7 +30,7 @@
 </div>
 
 ## About
-Weather Calendar App is a ***fully responsive*** web app that I built with ***create-react-app and redux toolkit***. The app consumes the [Discogs database](https://www.discogs.com/).
+Music Candy is a ***fully responsive*** web app that I built with ***create-react-app and redux toolkit***. The app consumes the [Discogs database](https://www.discogs.com/).
 
 ### File Structure
 <div align="left"><img width="30%" alt="file structure screenshot" src="./.github/images/file_structure_snap1.png">
